@@ -302,7 +302,7 @@ client.on('message', message =>{
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let prefix = '!!';
-     
+    let sicon = message.author.defaultAvatarURL
     if(cmd === `${prefix}report`){
         let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
         if(!rUser) return message.channel.send("Idk who 2 report ??");
@@ -316,7 +316,8 @@ client.on('message', message =>{
         .addField("- Reported By :", `${message.author} (${message.author.id})`)
         .addField("- Reported In :", message.channel)
         .addField("- Report Time :", message.createdAt.toLocaleString(),true)
-        .addField("- Reason :", reason);
+        .addField("- Reason :", reason)
+	.setThumbnail(sicon);
     
         let reportschannel = message.guild.channels.find(`name`, "reports");
         if(!reportschannel) return message.channel.send("You should to make `reports` channel.");
