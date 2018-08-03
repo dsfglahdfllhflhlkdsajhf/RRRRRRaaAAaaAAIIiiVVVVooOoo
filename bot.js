@@ -338,13 +338,12 @@ client.on('message', async message =>{
     let sicon = message.author.displayAvatarURL;
 
     if(cmd === `${PREFIX}`) {
-    message.channel.send("React with 👍 for A general commands")
     message.react('👍').then(() => message.react('👎'));
 
 const filter = (reaction, user) => {
     return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
 };
-	
+    message.channel.send("React with 👍 for A general commands")
 message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
     .then(collected => {
 
