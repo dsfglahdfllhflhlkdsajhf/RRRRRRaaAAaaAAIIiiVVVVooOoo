@@ -347,7 +347,8 @@ client.on('message', async message =>{
     let sicon = message.author.displayAvatarURL;
     if(cmd === `${prefix}help`) {
         var generalhelp = new Discord.RichEmbed()
-            .setTitle("**List of A general Commands**\n") 
+            .setTitle("**List of A general Commands..**\n")
+	    .setDescription("The bot prefix is (!!) btw.")
             .addField(" - help", "Displays this message, (Correct usage: !!help)") 
             .addField(" - avatar", "To show your avatar or A mentioned member avatar!") 
             .addField(" - ping", "Tests my ping, (Correct usage: !!ping)") 
@@ -356,7 +357,7 @@ client.on('message', async message =>{
             .addField(" - report", "report the toxic user!! (Example: !!report @mentionUser he is toxic!)")
             .addField(" - say", "I will say what you want! (Example: !!say Hi)")
             .setColor("#f7abab")
-            .setFooter("Type (music!) to display the music commands, the bot prefix is (!!) .")
+            .setFooter("Type (!!music) to display the music commands.")
             .setThumbnail(sicon)
 	message.delete().catch(O_o=>{}) 
         message.author.send(generalhelp);
@@ -374,7 +375,7 @@ client.on('message', async message =>{
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    let PREFIX = 'music!';
+    let PREFIX = '!!music';
     let sicon = message.author.displayAvatarURL;
     if(cmd === `${PREFIX}`) {
         var musichelp = new Discord.RichEmbed()
@@ -386,10 +387,9 @@ client.on('message', async message =>{
         .addField(" - skip", "To skip the current music")
         .setColor("#f7abab")
         .setThumbnail(sicon)
-        .setFooter("Type (ADMIN) to display the music commands.")
+        .setFooter("Type (!!admin) to display the admin commands.")
     message.delete().catch(O_o=>{}) 
     message.author.send(musichelp);
-    message.channel.send("Check your DMs!");
 }
 });
 //
