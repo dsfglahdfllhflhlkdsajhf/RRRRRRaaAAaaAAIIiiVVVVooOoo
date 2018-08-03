@@ -212,7 +212,26 @@ client.on('message', msg => {
 //////
 ///////
 ////////
+client.on('message', message => {
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(0);
+    let prefix = '!!';
 
+if(cmd === `${prefix}emojis`){
+
+    const List = message.guild.emojis.map(e => e.toString()).join(" ");
+
+    const EmojiList = new Discord.RichEmbed()
+    if(!EmojiList) return message.channel.send("There is no emojis in this server ):")
+    .setTitle("**__Server emojis :__**")
+    .setAuthor(message.guild.name, message.guild.iconURL)
+    .setColor("#00ff93")
+    .setDescription(List)
+    message.channel.send(EmojiList);
+
+}
+});
 //
 ///
 ////
