@@ -508,7 +508,7 @@ client.on('message', message => {
 
     if (!language) {
 
-      return message.reply(`**Use \`!!tra [The word] to [The language]\`**`);
+      return message.reply(`**The Correct usage is \`\`\`\nfix!!tra [The word] to [The language]\`\`\``);
 
     }
     let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
@@ -516,18 +516,18 @@ client.on('message', message => {
             message.channel.send({embed: {
                 color: 3447003,
                 author: {
-                  name: 'S Bot translate',
+                  name: 'Hotbot translate!',
                   icon_url: client.user.avatarURL
                 },
                 fields: [{
-                    name: "S Bot",
+                    name: "Hotbot translate!",
                     value: `**From :** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**To: **${language}\n\`\`\`${res.text}\`\`\``
                   }
                 ],
                 timestamp: new Date(),
                 footer: {
                   icon_url: client.user.avatarURL,
-                  text: "S Bot"
+                  text: "Hotbot Bot!"
                 }
               }
             });
