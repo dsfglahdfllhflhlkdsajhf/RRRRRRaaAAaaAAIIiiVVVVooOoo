@@ -103,10 +103,11 @@ client.on('message', message =>{
     if(isNaN(EmojiId)) return message.reply(`Wrong name!`);
   
     let EmojiURL = `https://cdn.discordapp.com/emojis/${EmojiId}.png`;
+  
     let EmojiEmbed = new Discord.RichEmbed()
     .setColor('#f8aeae')
     .setTitle(`Emoji link ${findEmoji}`)
-    .setDescription(`**Emoji ID,** (${EmojiID})`)
+    .setDescription(`**Emoji ID,** (${findEmoji.slice(findEmoji.length - 19,findEmoji.length -1)})`)
     .setURL(`${EmojiURL}`)
     .setImage(`${EmojiURL}`)
   
