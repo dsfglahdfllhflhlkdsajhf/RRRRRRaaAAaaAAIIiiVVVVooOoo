@@ -461,7 +461,33 @@ client.on('message', message => {
 //////
 ///////
 ////////
+client.on('message', message => {
+  if(message.content.startsWith(prefix + 'move all')) {
+  if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send("You don't have enough permissions to use this command!");
+  if (!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("You don't have enough permissions to use this command!");
+  if (message.member.voiceChannel == null) return message.channel.send(`You should join A voice channel to use this command!`)
 
+    var author = message.member.voiceChannelID;
+
+    var m = message.guild.members.filter(m=>m.voiceChannel)
+
+    message.guild.members.filter(m=>m.voiceChannel).forEach(m => {
+
+      m.setVoiceChannel(author)
+
+    })
+  message.channel.send(`**Moving Users to your voice channel.**`).then(msg => {
+      setTimeout(() => {
+         msg.edit('**Moving Users to your voice channel..**');
+      },1000);
+      setTimeout(() => {
+         msg.edit('**Moving Users to your voice channel...**');
+      },2000);
+  });
+
+
+  }
+});
 /*
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
