@@ -223,10 +223,10 @@ if(cmd === `${prefix}emoji-list`){
     const List = message.guild.emojis.map(e => e.toString()).join(" ");
 
     const EmojiList = new Discord.RichEmbed()
-    if(!EmojiList) return message.channel.send("There is no emojis in this server ):")
+    if(!List) return message.channel.send("There is no emojis in this server ):")
     .setTitle("**__Server emojis :__**")
     .setAuthor(message.guild.name, message.guild.iconURL)
-    .setColor("#00ff93")
+    .setColor("#f7abab")
     .setDescription(List)
     message.channel.send(EmojiList);
 
