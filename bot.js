@@ -348,7 +348,7 @@ client.on('message', async message =>{
     if(cmd === `${prefix}help`) {
         var generalhelp = new Discord.RichEmbed()
             .setTitle("**List of A general Commands..**\n")
-	    .setDescription("The bot prefix is (!!) btw.")
+	    .setDescription("**The bot prefix is (!!) btw.**")
             .addField(" - help", "Displays this message, (Correct usage: !!help)") 
             .addField(" - avatar", "To show your avatar or A mentioned member avatar!") 
             .addField(" - ping", "Tests my ping, (Correct usage: !!ping)") 
@@ -361,7 +361,7 @@ client.on('message', async message =>{
             .setThumbnail(sicon)
 	message.delete().catch(O_o=>{}) 
         message.author.send(generalhelp);
-	message.channel.send("Check your DMs");
+	message.channel.send("Check your DMs!");
     }
 });
 //
