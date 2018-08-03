@@ -105,7 +105,7 @@ client.on('message', message =>{
     let EmojiURL = `https://cdn.discordapp.com/emojis/${EmojiId}.png`;
   
     let EmojiEmbed = new Discord.RichEmbed()
-    .setColor('#f8aeae')
+    .setColor('#f7abab')
     .setTitle(`Emoji link, ${findEmoji}`)
     .setDescription(`**Emoji ID,** (${findEmoji.slice(findEmoji.length - 19,findEmoji.length -1)})`)
     .setURL(`${EmojiURL}`)
@@ -227,7 +227,7 @@ if(cmd === `${prefix}emoji-list`) {
     const EmojiList = new Discord.RichEmbed()
     .setTitle("**__Server emojis :__**")
     .setAuthor(message.guild.name, message.guild.iconURL)
-    .setColor("#f7abab")
+    .setColor("#61e791")
     .setDescription(List)
 
     message.channel.send(EmojiList);
@@ -251,12 +251,12 @@ client.on('message', message =>{
           let sicon = message.author.avatarURL
           let embed = new Discord.RichEmbed()
           .setImage(message.author.avatarURL)
-          .setColor("#f7abab")
+          .setColor("#5074b3")
           message.channel.send({embed})
         } else {
           let sicon = mentions.user.avatarURL
           let embed = new Discord.RichEmbed()
-          .setColor("#f7abab")
+          .setColor("#5074b3")
           .setImage(sicon)
           message.channel.send({embed})
         }
@@ -277,7 +277,7 @@ client.on('message', message => {
 
     if(cmd === `${prefix}ping`) {
     let embed = new Discord.RichEmbed()
-    .setColor("#f7abab")
+    .setColor("#4693ff")
     .setTitle("Pong!!")
     .setDescription(`${client.ping} ms,`)
     .setFooter(`Requested by | ${message.author.tag}`);
@@ -301,7 +301,7 @@ client.on('message', message =>{
     if(cmd === `${prefix}say`) {
     var sayMessage = message.content.substring(5)
     let SAYembed = new Discord.RichEmbed()
-    .setColor("#f7abab")
+    .setColor("#4693ff")
     .setDescription(sayMessage);
     message.delete().catch(O_o=>{}) 
     message.channel.send(SAYembed);
