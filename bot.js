@@ -231,13 +231,11 @@ client.on('message', message =>{
           let embed = new Discord.RichEmbed()
           .setImage(message.author.avatarURL)
           .setColor("#f7abab")
-          .setTitle(`Here is your beatiful avatar :`);
           message.channel.send({embed})
         } else {
           let sicon = mentions.user.avatarURL
           let embed = new Discord.RichEmbed()
           .setColor("#f7abab")
-          .setDescription(`**${mentions.user.username}#${mentions.user.discriminator}**'s avatar :`)
           .setImage(sicon)
           message.channel.send({embed})
         }
