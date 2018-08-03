@@ -402,7 +402,7 @@ client.on('message', async message =>{
     if(cmd === `${PREFIX}`) {
         var musichelp = new Discord.RichEmbed()
         .setTitle("**List of A music Commands**\n") 
-        .addField(" - play", "To play a music & join the voice, (Correct usage: !!play Song name or A youtube URL)")
+        .addField(" - p", "To play a music & join the voice, (Correct usage: !!play Song name or A youtube URL)")
         .addField(" - queue", "To show the songs queue & now playing music, (Coorect usage: !!queue)") 
         .addField(" - pause", "Pause A music for Temporary time, (Correct usage: !!pause)")
         .addField(" - resume", "To unpause the music, (Correct usage: !!resume)")
@@ -486,7 +486,7 @@ client.on('message', async msg => {
 	let command = msg.content.toLowerCase().split(" ")[0];
 	command = command.slice(prefix.length)
 
-	if (command === `play`) {
+	if (command === `p`) {
 		const voiceChannel = msg.member.voiceChannel;
         
         if (!voiceChannel) return msg.channel.send("I can't find you in any voice channel!");
