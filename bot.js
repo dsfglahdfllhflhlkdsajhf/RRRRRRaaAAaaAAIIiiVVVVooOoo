@@ -347,7 +347,6 @@ client.on('message', async message =>{
     let prefix = '!!';
     let sicon = message.author.displayAvatarURL;
     if(cmd === `${prefix}help`) {
-	message.channel.send("The general list of commands are in your DMs..");
         var generalhelp = new Discord.RichEmbed()
             .setTitle("**List of A general Commands**\n") 
             .addField(" - help", "Displays this message, (Correct usage: !!help)") 
@@ -362,6 +361,7 @@ client.on('message', async message =>{
             .setThumbnail(sicon)
 	message.delete().catch(O_o=>{}) 
         message.author.send(generalhelp);
+	message.channel.send("The general list of commands are in your DMs..");
 	if(message.channel.type === "dm") return messsage.author.send(generalhelp);
     }
 });
