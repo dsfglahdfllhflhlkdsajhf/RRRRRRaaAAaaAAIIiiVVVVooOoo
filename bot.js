@@ -329,7 +329,42 @@ client.on('message', message =>{
 //////
 ///////
 ////////
+client.on('message', async message =>{
+    const reaction = collected.first();
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+    let PREFIX = 'Help'
+    let sicon = message.author.displayAvatarURL;
 
+    if(cmd === `${PREFIX}`) {
+    message.channel.send("React with 👍 for A general commands")
+    message.react('👍').then(() => message.react('👎'));
+
+const filter = (reaction, user) => {
+    return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
+};
+	
+message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+    .then(collected => {
+
+        if (reaction.emoji.name === '👍') {
+            var musichelp = new Discord.RichEmbed()
+            .setTitle("**List of A music Commands**\n") 
+            .addField(" - play", "To play a music & join the voice, (Correct usage: !!play Song name or A youtube URL)")
+            .addField(" - queue", "To show the songs queue & now playing music, (Coorect usage: !!queue)") 
+            .addField(" - pause", "Pause A music for Temporary time, (Correct usage: !!pause)")
+            .addField(" - resume", "To unpause the music, (Correct usage: !!resume)")
+            .addField(" - skip", "To skip the current music")
+            .setColor("#f7abab")
+            .setThumbnail(sicon)
+            .setFooter("Type (ADMIN) to display the music commands.")
+            message.author.send(musichelp);
+        }
+
+    });
+}
+});
 //
 ///
 ////
