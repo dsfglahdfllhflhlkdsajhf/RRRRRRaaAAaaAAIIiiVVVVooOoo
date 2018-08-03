@@ -361,9 +361,6 @@ client.on('message',async message => {
             setTimeout(() => {
                msg.edit('**Restarting...**');
             },2000);
-	     setTimeout()) => {
-	       msg.edit('**Restarting.**');
-	    },3000);
         });
         console.log(`${message.author.tag} [ ${message.author.id} ] has restarted the bot.`);
         console.log(`Restarting..`);
