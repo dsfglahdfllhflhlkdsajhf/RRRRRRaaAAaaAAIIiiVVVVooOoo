@@ -256,7 +256,6 @@ client.on('message', message => {
     let sicon = message.author.displayAvatarURL
 
     if(cmd === `${prefix}ping`) {
-    message.delete().catch(O_o=>{});
     let embed = new Discord.RichEmbed()
     .setColor("#f7abab")
     .setTitle("Pong!!")
@@ -280,7 +279,6 @@ client.on('message', message =>{
      
     if(cmd === `${prefix}say`) {
     var sayMessage = message.content.substring(5)
-    message.delete().catch(O_o=>{});
     let SAYembed = new Discord.RichEmbed()
     .setColor("#f7abab")
     .setDescription(sayMessage);
