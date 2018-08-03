@@ -339,7 +339,6 @@ client.on('message', message =>{
 ///////
 ////////
 client.on('message', async message =>{
-    if(message.author.client) return;
 
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
@@ -361,8 +360,7 @@ client.on('message', async message =>{
             .setThumbnail(sicon)
 	message.delete().catch(O_o=>{}) 
         message.author.send(generalhelp);
-	message.channel.send("The general list of commands are in your DMs..");
-	if(message.channel.type === "dm") return messsage.author.send(generalhelp);
+	message.channel.send("Check your DMs");
     }
 });
 //
