@@ -219,11 +219,10 @@ client.on('message', message => {
     let args = messageArray.slice(0);
     let prefix = '!!';
 
-if(cmd === `${prefix}emoji-list`){
-    const sad = client.emojis.get("398950797506904088");
+if(cmd === `${prefix}emoji-list`) {
     const List = message.guild.emojis.map(e => e.toString()).join(" ");
 
-    if(!List) return message.channel.send(`There is no emojis in this server ${sad}`)
+    if(!List) return message.channel.send(`There is no emojis in this server ):`)
 
     const EmojiList = new Discord.RichEmbed()
     .setTitle("**__Server emojis :__**")
