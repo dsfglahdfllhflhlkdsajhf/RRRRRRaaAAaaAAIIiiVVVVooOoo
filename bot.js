@@ -220,9 +220,11 @@ client.on('message', message => {
     let prefix = '!!';
 
 if(cmd === `${prefix}emoji-list`){
-
+    const sad = client.emojis.get("398950797506904088");
+    const sad = client.emojis.find("name", "sad");
     const List = message.guild.emojis.map(e => e.toString()).join(" ");
-    if(!List) return message.channel.send("There is no emojis in this server ):")
+
+    if(!List) return message.channel.send(`There is no emojis in this server ${sad}`)
 
     const EmojiList = new Discord.RichEmbed()
     .setTitle("**__Server emojis :__**")
@@ -372,7 +374,8 @@ client.on('message', async message =>{
 	    .setDescription("**The bot prefix is (!!) btw.**")
             .addField(" - help", "Displays this message, (Correct usage: !!help)") 
             .addField(" - avatar", "To show your avatar or A mentioned member avatar!") 
-            .addField(" - ping", "Tests my ping, (Correct usage: !!ping)") 
+            .addField(" - ping", "Tests my ping, (Correct usage: !!ping)")
+	    .addField(" - emoji-list", "To get the server emoji list! (Correct usage: !!emoji-list)")
             .addField(" - get-emoji", "To show the emoji image & link! (Correct usage: !!get-emoji :The emoji:)") 
             .addField(" - cal", "A cool calculator, (Example: !!cal 9*9)")
             .addField(" - report", "report the toxic user!! (Example: !!report @mentionUser he is toxic!)")
