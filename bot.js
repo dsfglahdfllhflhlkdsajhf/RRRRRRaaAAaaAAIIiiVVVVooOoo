@@ -462,7 +462,7 @@ client.on('message', message => {
 ///////
 ////////
 client.on('message', message => {
-  if(message.content.startsWith(prefix + 'move all')) {
+  if(message.content.startsWith(prefix + 'move-all')) {
   if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send("You don't have enough permissions to use this command!");
   if (!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("You don't have enough permissions to use this command!");
   if (message.member.voiceChannel == null) return message.channel.send(`You should join A voice channel to use this command!`)
