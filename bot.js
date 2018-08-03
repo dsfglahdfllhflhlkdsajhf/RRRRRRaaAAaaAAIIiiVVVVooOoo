@@ -251,9 +251,8 @@ client.on('message', message =>{
 client.on('message', message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
-    let args = messageArray.slice(1);
+    let args = messageArray.slice(0);
     let prefix = '!!';
-    let sicon = message.author.displayAvatarURL
 
     if(cmd === `${prefix}ping`) {
     let embed = new Discord.RichEmbed()
@@ -261,6 +260,7 @@ client.on('message', message => {
     .setTitle("Pong!!")
     .setDescription(`${client.ping} ms,`)
     .setFooter(`Requested by | ${message.author.tag}`);
+    message.delete().catch(O_o=>{})
     message.channel.send(embed);
     }
 });
@@ -340,7 +340,6 @@ client.on('message', message =>{
 ////////
 client.on('message', async message =>{
     if(message.author.client) return;
-    if(message.channel.type === "dm") return message.author.reply("Type this command in servers not in my DM!")
 
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
@@ -348,6 +347,7 @@ client.on('message', async message =>{
     let prefix = '!!';
     let sicon = message.author.displayAvatarURL;
     if(cmd === `${prefix}help`) {
+	message.channel.send("The general list of commands are in your DMs..");
         var generalhelp = new Discord.RichEmbed()
             .setTitle("**List of A general Commands**\n") 
             .addField(" - help", "Displays this message, (Correct usage: !!help)") 
@@ -362,7 +362,7 @@ client.on('message', async message =>{
             .setThumbnail(sicon)
 	message.delete().catch(O_o=>{}) 
         message.author.send(generalhelp);
-        message.channel.send("Check your DMs!");
+	if(message.channel.type === "dm") return messsage.author.send(generalhelp);
     }
 });
 //
