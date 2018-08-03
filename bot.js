@@ -488,6 +488,59 @@ client.on('message', message => {
 
   }
 });
+//
+///
+////
+/////
+//////
+///////
+////////
+  client.on('message', message => {
+    if (message.content.startsWith("!!tra")) {
+
+    const translate = require('google-translate-api');
+    const Discord = require('discord.js');
+
+    let toTrans = message.content.split(' ').slice(1);
+    let language;
+
+    language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
+
+    if (!language) {
+
+      return message.reply(`**Use \`!!tra [The word] to [The language]\`**`);
+
+    }
+    let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
+    translate(finalToTrans, {to: language}).then(res => {
+            message.channel.send({embed: {
+                color: 3447003,
+                author: {
+                  name: 'S Bot translate',
+                  icon_url: client.user.avatarURL
+                },
+                fields: [{
+                    name: "S Bot",
+                    value: `**From :** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**To: **${language}\n\`\`\`${res.text}\`\`\``
+                  }
+                ],
+                timestamp: new Date(),
+                footer: {
+                  icon_url: client.user.avatarURL,
+                  text: "S Bot"
+                }
+              }
+            });
+    }).catch(err => {
+        message.channel.send({
+            embed: {
+                description: 'Cannot find this language!',
+                color: 0xE8642B
+            }
+        });
+    });
+    }
+});
 /*
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
