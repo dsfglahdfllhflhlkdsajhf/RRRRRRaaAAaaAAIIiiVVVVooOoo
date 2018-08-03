@@ -339,6 +339,9 @@ client.on('message', message =>{
 ///////
 ////////
 client.on('message', async message =>{
+    if(message.author.client) return;
+    if(message.channel.type === "dm") return message.author.reply("Type this command in servers not in my DM!")
+
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
