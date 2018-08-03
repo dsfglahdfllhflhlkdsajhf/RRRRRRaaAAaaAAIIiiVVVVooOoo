@@ -218,7 +218,7 @@ client.on('message', message => {
     let args = messageArray.slice(0);
     let prefix = '!!';
 
-if(cmd === `${prefix}emojis`){
+if(cmd === `${prefix}emoji-list`){
 
     const List = message.guild.emojis.map(e => e.toString()).join(" ");
 
