@@ -221,7 +221,6 @@ client.on('message', message => {
 
 if(cmd === `${prefix}emoji-list`){
     const sad = client.emojis.get("398950797506904088");
-    const sad = client.emojis.find("name", "sad");
     const List = message.guild.emojis.map(e => e.toString()).join(" ");
 
     if(!List) return message.channel.send(`There is no emojis in this server ${sad}`)
