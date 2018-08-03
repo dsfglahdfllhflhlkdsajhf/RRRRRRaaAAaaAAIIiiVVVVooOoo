@@ -106,7 +106,7 @@ client.on('message', message =>{
   
     let EmojiEmbed = new Discord.RichEmbed()
     .setColor('#f8aeae')
-    .setTitle(`Emoji link ${findEmoji}`)
+    .setTitle(`Emoji link, ${findEmoji}`)
     .setDescription(`**Emoji ID,** (${findEmoji.slice(findEmoji.length - 19,findEmoji.length -1)})`)
     .setURL(`${EmojiURL}`)
     .setImage(`${EmojiURL}`)
