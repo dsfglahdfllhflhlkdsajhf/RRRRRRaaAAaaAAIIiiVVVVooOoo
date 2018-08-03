@@ -520,7 +520,7 @@ client.on('message', message => {
                   icon_url: client.user.avatarURL
                 },
                 fields: [{
-                    name: "Hotbot translate!",
+                    name: "Here is the cool translate!",
                     value: `**From :** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**To: **${language}\n\`\`\`${res.text}\`\`\``
                   }
                 ],
