@@ -282,6 +282,7 @@ client.on('message', message =>{
     let SAYembed = new Discord.RichEmbed()
     .setColor("#f7abab")
     .setDescription(sayMessage);
+    message.delete().catch(O_o=>{}) 
     message.channel.send(SAYembed);
 }
 
@@ -344,7 +345,6 @@ client.on('message', async message =>{
     let prefix = '!!';
     let sicon = message.author.displayAvatarURL;
     if(cmd === `${prefix}help`) {
-        message.delete().catch(O_o=>{}) 
         var generalhelp = new Discord.RichEmbed()
             .setTitle("**List of A general Commands**\n") 
             .addField(" - help", "Displays this message, (Correct usage: !!help)") 
@@ -357,6 +357,7 @@ client.on('message', async message =>{
             .setColor("#f7abab")
             .setFooter("Type (music!) to display the music commands, the bot prefix is (!!) .")
             .setThumbnail(sicon)
+	message.delete().catch(O_o=>{}) 
         message.author.send(generalhelp);
         message.channel.send("Check your DMs!");
     }
@@ -375,7 +376,6 @@ client.on('message', async message =>{
     let PREFIX = 'music!';
     let sicon = message.author.displayAvatarURL;
     if(cmd === `${PREFIX}`) {
-        message.delete().catch(O_o=>{})
         var musichelp = new Discord.RichEmbed()
         .setTitle("**List of A music Commands**\n") 
         .addField(" - play", "To play a music & join the voice, (Correct usage: !!play Song name or A youtube URL)")
@@ -386,6 +386,7 @@ client.on('message', async message =>{
         .setColor("#f7abab")
         .setThumbnail(sicon)
         .setFooter("Type (ADMIN) to display the music commands.")
+    message.delete().catch(O_o=>{}) 
     message.author.send(musichelp);
     message.channel.send("Check your DMs!");
 }
