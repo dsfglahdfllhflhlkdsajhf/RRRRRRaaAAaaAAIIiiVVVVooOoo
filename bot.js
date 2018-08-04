@@ -34,7 +34,6 @@ const developers = ["426295568688611328"]
 const adminprefix = '!';
 
 //
-let coins = require("./coins.json");
 
 
 client.on('ready', function() {
@@ -421,6 +420,7 @@ client.on('message', async message =>{
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    let coins = require("./coins.json");
 
   if(!coins[message.author.id]){
     coins[message.author.id] = {
