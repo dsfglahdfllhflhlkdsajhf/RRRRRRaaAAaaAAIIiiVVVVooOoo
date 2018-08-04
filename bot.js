@@ -429,6 +429,7 @@ client.on('message',async message => {
     if(message.author.client) return;
     if(message.channel.type === "dm") return
 
+    if(cmd === `${prefix}credits`) {
     if(!credits[message.author.id]) credits[message.author.id] = {
         credits: 50
     };
@@ -443,8 +444,6 @@ client.on('message',async message => {
     credits[message.author.id] = {
         credits: m + 0.5,
     }
-
-    if(cmd === `${prefix}credits`) {
         message.channel.send(`**${message.author.tag}, your 💳 balance is **${userData.credits}**.`);
     }
 });
