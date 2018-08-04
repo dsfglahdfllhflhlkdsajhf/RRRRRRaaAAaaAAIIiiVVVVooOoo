@@ -16,6 +16,8 @@ const ytdl = require('ytdl-core');
 
 const fs = require('fs');
 
+const db = fs.database();
+
 const math = require('math-expression-evaluator');
 
 const stripIndents = require('common-tags').stripIndents;
@@ -416,8 +418,6 @@ client.on('message', async message =>{
 //////
 ///////
 ////////
-const fs = require('fs');
-const db = fs.database();
 client.on("message", message => {
   if (message.content === "set-prefix") {
   if (message.author.id !== "274923685985386496" && !message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("You don't have enough permissions to do that!");
