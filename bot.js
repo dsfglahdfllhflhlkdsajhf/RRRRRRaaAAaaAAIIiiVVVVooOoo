@@ -127,7 +127,7 @@ client.on('message', message => {
       
       if (message.content.startsWith(adminprefix + 'ply')) {
         client.user.setGame(argresult);
-        message.channel.send(`**Ok, playing..** **${argresult}!**`)
+        message.channel.send(`**Ok, playing..** **${argresult}!**`).then(message =>{message.delete(20000)});
 
     } else
 
@@ -138,35 +138,35 @@ client.on('message', message => {
 
       if (message.content.startsWith(adminprefix + 'wt')) {
         client.user.setActivity(argresult, {type:'WATCHING'});
-        message.channel.send(`**Ok, watching..** **${argresult}!**`)
+        message.channel.send(`**Ok, watching..** **${argresult}!**`).then(message =>{message.delete(20000)});
 
     } else
 
      if (message.content.startsWith(adminprefix + 'ls')) {
         client.user.setActivity(argresult , {type:'LISTENING'});
-        message.channel.send(`**Ok, listening to..** **${argresult}!**`)
+        message.channel.send(`**Ok, listening to..** **${argresult}!**`).then(message =>{message.delete(20000)});
     } else
 
      if (message.content.startsWith(adminprefix + 'st')) {
         client.user.setGame(argresult, "https://www.twitch.tv/idk");
-        message.channel.send(`**Ok, Streaming..** **${argresult}!**`)
+        message.channel.send(`**Ok, Streaming..** **${argresult}!**`).then(message =>{message.delete(20000)});
     }
 
      if (message.content.startsWith(adminprefix + 'set-name')) {
         client.user.setUsername(argresult).then
-        message.channel.send(`**Changing my name to..** **${argresult}!** `)
+        message.channel.send(`**Changing my name to..** **${argresult}!** `).then(message =>{message.delete(20000)});
 
     } else
 
      if (message.content.startsWith(adminprefix + 'set-avatar')) {
         client.user.setAvatar(argresult);
-        message.channel.send(`**Changing my avatar to..** ${argresult}`);
+        message.channel.send(`**Changing my avatar to..** ${argresult}`).then(message =>{message.delete(20000)});
 
     } else
 
     if (message.content.startsWith(adminprefix + 'set-status')) {
         client.user.setStatus(argresult)
-        message.channel.send(`**Ok, status changed to..** **${argresult}!**`)
+        message.channel.send(`**Ok, status changed to..** **${argresult}!**`).then(message =>{message.delete(20000)});
     }
 
 });
@@ -406,7 +406,7 @@ client.on('message', async message =>{
             .setThumbnail(sicon)
 	message.delete().catch(O_o=>{}) 
         message.author.send(generalhelp);
-	message.channel.send("Ok, i sent the commands list for u!").then(message =>{message.delete(2000)})
+	message.channel.send("Ok, i sent the commands list for u!").then(message =>{message.delete(20000)})
     }
 });
 //
@@ -487,7 +487,7 @@ client.on('message', message => {
       },1000);
       setTimeout(() => {
          msg.edit('**Moving Users to your voice channel...**');
-      },2000);
+      },2000).then(message =>{message.delete(20000)});
   });
 
 
