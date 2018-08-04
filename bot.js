@@ -448,6 +448,32 @@ client.on('message', async message =>{
 
 }
 
+
+client.on('message', async message =>{
+    let coins = require("./coins.json");
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+    let prefix = '!!';
+
+  if(cmd === `${prefix}coins`) {
+  if(!coins[message.author.id]){
+    coins[message.author.id] = {
+      coins: 0
+    };
+  }
+
+  let uCoins = coins[message.author.id].coins;
+
+
+  let coinEmbed = new Discord.RichEmbed()
+  .setAuthor(message.author.username)
+  .setColor("#00FF00")
+  .addField("💸", uCoins);
+
+  message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});
+  }
+});
 //
 ///
 ////
