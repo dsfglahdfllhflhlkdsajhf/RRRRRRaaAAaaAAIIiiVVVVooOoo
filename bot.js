@@ -465,6 +465,7 @@ if(cmd === `${prefix}coins`) {
   message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});
 
 }
+  }
 //
 ///
 ////
@@ -863,4 +864,4 @@ function play(guild, song) {
 
 
 client.login(process.env.BOT_TOKEN);
-
+});
