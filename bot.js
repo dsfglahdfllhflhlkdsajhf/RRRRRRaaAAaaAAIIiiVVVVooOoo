@@ -406,7 +406,7 @@ client.on('message', async message =>{
             .setThumbnail(sicon)
 	message.delete().catch(O_o=>{}) 
         message.author.send(generalhelp);
-	message.channel.send("Ok, i sent the commands list for u!");
+	message.channel.send("Ok, i sent the commands list for u!").then(message =>{message.delete(2000)})
     }
 });
 //
