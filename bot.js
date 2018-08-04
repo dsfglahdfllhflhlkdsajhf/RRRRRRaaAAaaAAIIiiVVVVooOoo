@@ -416,6 +416,7 @@ client.on('message', async message =>{
 //////
 ///////
 ////////
+const fs = require('fs');
 const db = fs.database();
 client.on("message", message => {
   if (message.content === "set-prefix") {
