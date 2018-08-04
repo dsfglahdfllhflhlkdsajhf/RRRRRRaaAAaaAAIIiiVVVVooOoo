@@ -256,7 +256,7 @@ client.on('message', message =>{
         } else {
           let sicon = mentions.user.avatarURL
           let embed = new Discord.RichEmbed()
-          .setColor(3447003)
+          .setColor(#5074b3)
           .setImage(sicon)
           message.channel.send({embed})
         }
@@ -277,7 +277,7 @@ client.on('message', message => {
 
     if(cmd === `${prefix}ping`) {
     let embed = new Discord.RichEmbed()
-    .setColor("#4693ff")
+    .setColor(3447003)
     .setTitle("Pong!!")
     .setDescription(`${client.ping} ms,`)
     .setFooter(`Requested by | ${message.author.tag}`);
@@ -303,7 +303,7 @@ client.on('message', message =>{
     if(cmd === `${adminprefix}say`) {
     var sayMessage = message.content.substring(5)
     let SAYembed = new Discord.RichEmbed()
-    .setColor("#4693ff")
+    .setColor(3447003)
     .setDescription(sayMessage);
     message.delete().catch(O_o=>{}) 
     message.channel.send(SAYembed);
