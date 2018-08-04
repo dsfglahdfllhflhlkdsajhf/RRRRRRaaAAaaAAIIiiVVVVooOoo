@@ -463,7 +463,7 @@ if(cmd === `${prefix}coins`) {
   .addField("💸", uCoins);
 
   message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});
-
+}
 }
 //
 ///
