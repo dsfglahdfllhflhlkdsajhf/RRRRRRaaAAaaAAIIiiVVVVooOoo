@@ -256,7 +256,7 @@ client.on('message', message =>{
         } else {
           let sicon = mentions.user.avatarURL
           let embed = new Discord.RichEmbed()
-          .setColor("#5074b3")
+          .setColor(3447003)
           .setImage(sicon)
           message.channel.send({embed})
         }
