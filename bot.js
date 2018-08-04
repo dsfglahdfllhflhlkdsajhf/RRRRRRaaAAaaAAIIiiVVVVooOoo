@@ -400,13 +400,13 @@ client.on('message', async message =>{
             .addField(" - cal", "A cool calculator, (Example: !!cal 9*9)")
             .addField(" - report", "report the toxic user!! (Example: !!report @mentionUser he is toxic!)")
             .addField(" - say", "I will say what you want! (Example: !!say Hi) **Only bot developers!**")
-	    .addField("- restart", "I will restart my self! (**Only bot developers!**)")
+	    .addField("- restart", "I will restart my self! **Only bot developers!**")
             .setColor("#5074b3")
             .setFooter("Type (!!music) to display the music commands.")
             .setThumbnail(sicon)
 	message.delete().catch(O_o=>{}) 
         message.author.send(generalhelp);
-	message.channel.send("Check your DMs!");
+	message.channel.send("Ok, i sent the commands list for u!");
     }
 });
 //
