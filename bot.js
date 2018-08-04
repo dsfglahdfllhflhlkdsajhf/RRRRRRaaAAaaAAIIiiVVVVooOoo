@@ -24,6 +24,7 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
+
 //
 ///
 const prefix = '!!';
@@ -33,7 +34,7 @@ const developers = ["426295568688611328"]
 const adminprefix = '!';
 
 //
-
+let coins = require("./coins.json");
 
 
 client.on('ready', function() {
@@ -417,7 +418,6 @@ client.on('message', async message =>{
 ///////
 ////////
 client.on('message', async message =>{
-    let coins = require("./coins.json");
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
@@ -450,10 +450,8 @@ client.on('message', async message =>{
 
 
 client.on('message', async message =>{
-    let coins = require("./coins.json");
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
-    let args = messageArray.slice(1);
     let prefix = '!!';
 
   if(cmd === `${prefix}coins`) {
