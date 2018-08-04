@@ -420,7 +420,7 @@ client.on('message', async message =>{
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    let coins = require("./coins.json");
+    const coins = require("./coins.json");
 
   if(!coins[message.author.id]){
     coins[message.author.id] = {
