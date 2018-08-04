@@ -445,8 +445,9 @@ client.on('message', async message =>{
   .addField("💸", `${coinAmt} coins added!`);
 
   message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});
-  }
+
 }
+
 //
 ///
 ////
