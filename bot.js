@@ -36,7 +36,7 @@ const adminprefix = '!';
 //
 
 
-client.on('ready', function() {
+client.on('ready', function () {
     console.log(`${client.user.username} is running...`);
 });
 
