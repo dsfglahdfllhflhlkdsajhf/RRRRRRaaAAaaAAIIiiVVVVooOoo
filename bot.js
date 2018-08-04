@@ -457,11 +457,7 @@ client.on('message', async message =>{
     let prefix = '!!';
 
   if(cmd === `${prefix}coins`) {
-  if(!coins[message.author.id]){
-    coins[message.author.id] = {
-      coins: 0
-    };
-  }
+
 
   let uCoins = coins[message.author.id].coins;
 
