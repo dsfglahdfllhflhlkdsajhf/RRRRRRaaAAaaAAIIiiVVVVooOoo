@@ -416,69 +416,37 @@ client.on('message', async message =>{
 //////
 ///////
 ////////
-const credits = JSON.parse(fs.readFileSync("./creditsCode.json", "utf8")); 
-const coolDown = new Set();
-
-client.on('message',async message => {
-
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let prefix = '!!';
-
-    if(message.author.client) return;
-    if(message.channel.type === "dm") return
-
-    if(cmd === `${prefix}credits`) {
-    if(!credits[message.author.id]) credits[message.author.id] = {
-        credits: 50
-    };
-
-    let userData = credits[message.author.id];
-    let m = userData.credits;
-
-    fs.writeFile("./creditsCode.json", JSON.stringify(credits), (err) => {
-        if (err) console.error(err);
-    });
-
-    credits[message.author.id] = {
-        credits: m + 0.5,
-    }
-        message.channel.send(`**${message.author.tag}, your 💳 balance is **${userData.credits}**.`);
-    }
-});
-
 client.on('message', async message =>{
+    let coins = require("./coins.json");
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    let PREFIX = '!!';
-    let amount = 250;
-    if(cmd === `${PREFIX}daily`) {
 
-    if(message.author.bot) return;
-    if(coolDown.has(message.author.id)) return message.channel.send(`⏱ | ${message.author.username}, your daily 💴 credits refreshes in **1 Day**.`);
-    
-    let userData = credits[message.author.id];
-    let m = userData.credits + amount;
-
-    credits[message.author.id] = {
-        credits: m
+  if(!coins[message.author.id]){
+    coins[message.author.id] = {
+      coins: 0
     };
+  }
 
-    fs.writeFile("./creditscode.json", JSON.stringify(userData.credits + amount), (err) => {
-    if (err) console.error(err);
-    });
-    
-    message.channel.send(`🏧 | ${message.author.username}, you received your 💴 ${amount} credits!**`).then(() => {
-        coolDown.add(message.author.id);
-    });
+  let coinAmt = Math.floor(Math.random() * 15) + 1;
+  let baseAmt = Math.floor(Math.random() * 15) + 1;
+  console.log(`${coinAmt} ; ${baseAmt}`);
 
-    setTimeout(() => {
-       coolDown.remove(message.author.id);
-    },86400000);
-    }
-});
+  if(coinAmt === baseAmt){
+    coins[message.author.id] = {
+      coins: coins[message.author.id].coins + coinAmt
+    };
+  fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
+    if (err) console.log(err)
+  });
+  let coinEmbed = new Discord.RichEmbed()
+  .setAuthor(message.author.username)
+  .setColor("#5074b3")
+  .addField("💸", `${coinAmt} coins added!`);
+
+  message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});
+  }
+}
 //
 ///
 ////
