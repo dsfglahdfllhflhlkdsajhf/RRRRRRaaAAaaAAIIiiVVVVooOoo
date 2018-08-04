@@ -105,7 +105,7 @@ client.on('message', message =>{
     let EmojiURL = `https://cdn.discordapp.com/emojis/${EmojiId}.png`;
   
     let EmojiEmbed = new Discord.RichEmbed()
-    .setColor('#f7abab')
+    .setColor('#5074b3')
     .setTitle(`Emoji link, ${findEmoji}`)
     .setDescription(`**Emoji ID,** (${findEmoji.slice(findEmoji.length - 19,findEmoji.length -1)})`)
     .setURL(`${EmojiURL}`)
@@ -225,9 +225,9 @@ if(cmd === `${prefix}emoji-list`) {
     if(!List) return message.channel.send(`There is no emojis in this server ):`)
 
     const EmojiList = new Discord.RichEmbed()
-    .setTitle("**__Server emojis :__**")
+    .setTitle("**Server emojis :**")
     .setAuthor(message.guild.name, message.guild.iconURL)
-    .setColor("#61e791")
+    .setColor("#5074b3")
     .setDescription(List)
 
     message.channel.send(EmojiList);
@@ -297,8 +297,10 @@ client.on('message', message =>{
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let prefix = '!!';
-     
-    if(cmd === `${prefix}say`) {
+
+    if (!developers.includes(message.author.id)) return;
+
+    if(cmd === `${adminprefix}say`) {
     var sayMessage = message.content.substring(5)
     let SAYembed = new Discord.RichEmbed()
     .setColor("#4693ff")
@@ -328,7 +330,7 @@ client.on('message', message =>{
     
         let reportEmbed = new Discord.RichEmbed()
         .setTitle("User just reported...")
-        .setColor("#f7abab")
+        .setColor("#5074b3")
         .addField("- Reported User :", `${rUser} (${rUser.id})`)
         .addField("- Reported By :", `${message.author} (${message.author.id})`)
         .addField("- Reported In :", message.channel)
@@ -388,15 +390,18 @@ client.on('message', async message =>{
         var generalhelp = new Discord.RichEmbed()
             .setTitle("**List of A general Commands..**\n")
 	    .setDescription("**The bot prefix is (!!) btw.**")
-            .addField(" - help", "Displays this message, (Correct usage: !!help)") 
-            .addField(" - avatar", "To show your avatar or A mentioned member avatar!") 
+            .addField(" - help", "Displays this message, (Correct usage: !!help)")
             .addField(" - ping", "Tests my ping, (Correct usage: !!ping)")
+            .addField(" - avatar", "To show your avatar or A mentioned member avatar!") 
 	    .addField(" - emoji-list", "To get the server emoji list! (Correct usage: !!emoji-list)")
-            .addField(" - get-emoji", "To show the emoji image & link! (Correct usage: !!get-emoji :The emoji:)") 
+            .addField(" - get-emoji", "To show the emoji image & link! (Correct usage: !!get-emoji :The emoji:)")
+            .addField(" - gif", "I will search at gifs that you want! (Example: !!gif hellow)")
+	    .addField(" - tra", "A cool translator, (Correct usage: !!tra hi to Arabic)")
             .addField(" - cal", "A cool calculator, (Example: !!cal 9*9)")
             .addField(" - report", "report the toxic user!! (Example: !!report @mentionUser he is toxic!)")
-            .addField(" - say", "I will say what you want! (Example: !!say Hi)")
-            .setColor("#f7abab")
+            .addField(" - say", "I will say what you want! (Example: !!say Hi) **Only bot developers!**")
+	    .addField("- restart", "I will restart my self! (**Only bot developers!**)")
+            .setColor("#5074b3")
             .setFooter("Type (!!music) to display the music commands.")
             .setThumbnail(sicon)
 	message.delete().catch(O_o=>{}) 
@@ -425,7 +430,7 @@ client.on('message', async message =>{
         .addField(" - pause", "Pause A music for Temporary time, (Correct usage: !!pause)")
         .addField(" - resume", "To unpause the music, (Correct usage: !!resume)")
         .addField(" - skip", "To skip the current music")
-        .setColor("#f7abab")
+        .setColor("#5074b3")
         .setThumbnail(sicon)
         .setFooter("Type (!!admin) to display the admin commands.")
     message.delete().catch(O_o=>{}) 
