@@ -318,7 +318,7 @@ client.on('message', message =>{
 
     if (!developers.includes(message.author.id)) return;
 
-    if(cmd === `${adminprefix}say`) {
+    if(cmd === `${adminprefix}send`) {
     let mentions = message.mentions.members.first()
     if (!mentions) {
     var sayMessage = message.content.substring(5)
