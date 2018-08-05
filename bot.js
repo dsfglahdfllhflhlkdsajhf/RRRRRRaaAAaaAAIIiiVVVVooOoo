@@ -296,7 +296,6 @@ client.on('message', message =>{
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    let prefix = '!!';
 
     if (!developers.includes(message.author.id)) return;
 
@@ -307,6 +306,28 @@ client.on('message', message =>{
     .setDescription(sayMessage);
     message.delete().catch(O_o=>{}) 
     message.channel.send(SAYembed);
+}
+
+});
+
+
+client.on('message', message =>{
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+
+    if (!developers.includes(message.author.id)) return;
+
+    if(cmd === `${adminprefix}say`) {
+    let mentions = message.mentions.members.first()
+    if (!mentions) {
+    var sayMessage = message.content.substring(5)
+    let SAYembed = new Discord.RichEmbed()
+    .setColor(3447003)
+    .setDescription(sayMessage);
+    message.delete().catch(O_o=>{}) 
+    message.mentions.send(SAYembed);
+    }
 }
 
 });
