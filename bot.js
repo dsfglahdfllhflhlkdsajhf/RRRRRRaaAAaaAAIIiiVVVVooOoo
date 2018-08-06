@@ -20,6 +20,8 @@ const db = fs.database();
 
 const math = require('math-expression-evaluator');
 
+const opusscript = require("opusscript");
+
 const stripIndents = require('common-tags').stripIndents;
 
 const gif = require("gif-search");
