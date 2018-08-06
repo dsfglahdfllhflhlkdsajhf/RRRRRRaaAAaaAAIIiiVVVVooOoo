@@ -222,7 +222,7 @@ client.on('message', message => {
     let prefix = '!!';
 
 if(cmd === `${prefix}emoji-list`) {
-    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(966)})
+    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
     const List = message.guild.emojis.map(e => e.toString()).join(" ");
 
     if(!List) return message.channel.send(`There is no emojis in this server ):`)
@@ -249,7 +249,7 @@ client.on('message', message =>{
     let prefix = '!!';
     
     if(args[0] === `${prefix}avatar`){
-	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(966)})
+	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
         let mentions = message.mentions.members.first()
         if(!mentions) {
           let sicon = message.author.avatarURL
@@ -258,7 +258,7 @@ client.on('message', message =>{
           .setColor("#5074b3")
           message.channel.send({embed})
         } else {
-	  if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(966)})
+	  if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
           let sicon = mentions.user.avatarURL
           let embed = new Discord.RichEmbed()
           .setColor("#5074b3")
@@ -281,7 +281,7 @@ client.on('message', message => {
     let prefix = '!!';
 
     if(cmd === `${prefix}ping`) {
-    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(966)})
+    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
     let embed = new Discord.RichEmbed()
     .setColor(3447003)
     .setTitle("Pong!!")
@@ -329,7 +329,7 @@ client.on('message', message =>{
     let args = messageArray.slice(1);
     let prefix = '!!';
     if(cmd === `${prefix}report`){
-	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(966)})
+	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
         let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
         if(!rUser) return message.channel.send("Idk who 2 report ??\n Correct usage: **(!!report @mention (reason))**");
         let reason = args.join(" ").slice(22);
@@ -362,7 +362,7 @@ client.on('message', message =>{
 ////////
 client.on('message',async message => {
     if(message.content.startsWith("!restart")) {
-	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(966)})
+	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
         if(message.author.id !== "426295568688611328") return message.reply('You aren\'t the bot owner.');
         message.channel.send('**Restarting.**').then(msg => {
             setTimeout(() => {
@@ -395,7 +395,7 @@ client.on('message', async message =>{
     let prefix = '!!';
     let sicon = message.author.displayAvatarURL;
     if(cmd === `${prefix}help`) {
-	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(966)})
+	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
         var generalhelp = new Discord.RichEmbed()
             .setTitle("**List of A general Commands..**\n")
 	    .setDescription("**The bot prefix is (!!) btw.**")
@@ -440,7 +440,7 @@ client.on('message', async message =>{
     let PREFIX = '!!music';
     let sicon = message.author.displayAvatarURL;
     if(cmd === `${PREFIX}`) {
-	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(966)})
+	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
         var musichelp = new Discord.RichEmbed()
         .setTitle("**List of A music Commands**\n") 
         .addField(" - play", "To play a music & join the voice, (Correct usage: !!play Song name or A youtube URL)")
@@ -465,7 +465,7 @@ client.on('message', async message =>{
 client.on('message', message => {
     if(message.content.startsWith(prefix + 'gif')) {
     let args = message.content.split(' ').slice(1).join(' ')
-    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(966)})
+    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
     if (!args) return message.reply('Insert A gif name!').then((message.delete().catch(O_o=>{})));
     gif.query(args).then(gifUrl => {
         message.channel.send({
@@ -486,6 +486,7 @@ client.on('message', message => {
 ////////
 client.on('message', message => {
   if(message.content.startsWith(prefix + 'move-all')) {
+  if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
   if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send("You don't have enough permissions to use this command!");
   if (!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("You don't have enough permissions to use this command!");
   if (message.member.voiceChannel == null) return message.channel.send(`You should join A voice channel to use this command!`)
@@ -520,7 +521,7 @@ client.on('message', message => {
 ////////
   client.on('message', message => {
     if (message.content.startsWith("!!tra")) {
-
+    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
     const translate = require('google-translate-api');
     const Discord = require('discord.js');
 
