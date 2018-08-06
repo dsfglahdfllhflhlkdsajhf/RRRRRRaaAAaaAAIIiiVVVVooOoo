@@ -258,7 +258,7 @@ client.on('message', message =>{
           let embed = new Discord.RichEmbed()
           .setColor("#5074b3")
           .setImage(sicon)
-	  if(mentions) return message.channel.send("yo! i can't find him in the server ._.")
+	  if(!mentions) return message.channel.send("yo! i can't find him in the server ._.")
           message.channel.send({embed})
         }
     };
