@@ -258,7 +258,6 @@ client.on('message', message =>{
           let embed = new Discord.RichEmbed()
           .setColor("#5074b3")
           .setImage(sicon)
-	  if(!mentions) return message.channel.send("yo! i can't find him in the server ._.")
           message.channel.send({embed})
         }
     };
@@ -325,7 +324,7 @@ client.on('message', message =>{
     let prefix = '!!';
     if(cmd === `${prefix}report`){
         let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-        if(!rUser) return message.channel.send("Idk who 2 report ??");
+        if(!rUser) return message.channel.send("Idk who 2 report ??\n Correct usage: **(!!report @mention (reason))**");
         let reason = args.join(" ").slice(22);
         if(!reason) return message.channel.send("What is the reason ??");
     
@@ -339,11 +338,11 @@ client.on('message', message =>{
         .addField("- Reason :", reason);
     
         let reportschannel = message.guild.channels.find(`name`, "reports");
-        if(!reportschannel) return message.channel.send("You should to make `reports` channel.");
+        if(!reportschannel) return message.channel.send("yo! there is no **reports** channel in this server say that to admins!");
     
     
         message.delete().catch(O_o=>{});
-        message.author.send(`<@${rUser.id}>, Reported Successfully!!`)
+        message.channel.send(`<@${rUser.id}>, Just reported for ${reason}!`).then(message =>{message.delete(11000)});
         reportschannel.send(reportEmbed);
     };
 });
@@ -434,7 +433,7 @@ client.on('message', async message =>{
     if(cmd === `${PREFIX}`) {
         var musichelp = new Discord.RichEmbed()
         .setTitle("**List of A music Commands**\n") 
-        .addField(" - p", "To play a music & join the voice, (Correct usage: !!play Song name or A youtube URL)")
+        .addField(" - play", "To play a music & join the voice, (Correct usage: !!play Song name or A youtube URL)")
         .addField(" - queue", "To show the songs queue & now playing music, (Coorect usage: !!queue)") 
         .addField(" - pause", "Pause A music for Temporary time, (Correct usage: !!pause)")
         .addField(" - resume", "To unpause the music, (Correct usage: !!resume)")
@@ -597,7 +596,7 @@ client.on('message', async msg => {
 	let command = msg.content.toLowerCase().split(" ")[0];
 	command = command.slice(prefix.length)
 
-	if (command === `p`) {
+	if (command === `play`) {
 		const voiceChannel = msg.member.voiceChannel;
         
         if (!voiceChannel) return msg.channel.send("I can't find you in any voice channel!");
