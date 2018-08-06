@@ -531,7 +531,6 @@ if (message.content.startsWith("!!tra")) {
 */
 client.on('message', async msg => {
 const prefix = "!!",
-	if (msg.author.bot) return undefined;
     if (!msg.content.startsWith(prefix)) return undefined;
     
     const args = msg.content.split(' ');
