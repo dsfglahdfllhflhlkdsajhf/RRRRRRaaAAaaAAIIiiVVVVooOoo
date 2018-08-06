@@ -187,19 +187,6 @@ if(args[0] === `${prefix}get-emoji`){
     	message.channel.send(SAYembed);
     }
 //
-});
-
-//
-///
-////
-/////
-//////
-///////
-////////
-
-/*
-//
-//
 ///
 ////
 /////
@@ -207,16 +194,14 @@ if(args[0] === `${prefix}get-emoji`){
 ///////
 ////////
 /////////
-/////////*/
-client.on('message', msg => {
-    if (msg.content.startsWith(prefix + 'cal')) {
-    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(966)})
-    let args = msg.content.split(" ").slice(1);
+if (msg.content.startsWith(prefix + 'cal')) {
+
     const question = args.join(' ');
     
   if (args.length < 1) {
     msg.reply('Type the question pls!');
-} else {    let answer;
+
+  } else {    let answer;
 
     try {
 
@@ -225,15 +210,13 @@ client.on('message', msg => {
       return msg.reply(`Err: There are errors in your questions!`);
     }
 
-  const embed = new Discord.RichEmbed()
+    const embed = new Discord.RichEmbed()
     .setColor("#9b44f8")
     .setImage('https://static.zerochan.net/Ootori.Kyoya.full.401713.jpg')
     .setDescription(`**${question}= ${answer}!**`)
   msg.channel.send(embed)
-//
-}
+  }
 };
-});
 //
 ///
 ////
@@ -241,14 +224,8 @@ client.on('message', msg => {
 //////
 ///////
 ////////
-client.on('message', message => {
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(0);
-    let prefix = '!!';
-
+/////////
 if(cmd === `${prefix}emoji-list`) {
-    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
     const List = message.guild.emojis.map(e => e.toString()).join(" ");
 
     if(!List) return message.channel.send(`There is no emojis in this server ):`)
@@ -262,7 +239,6 @@ if(cmd === `${prefix}emoji-list`) {
     message.channel.send(EmojiList);
 
 }
-});
 //
 ///
 ////
@@ -270,12 +246,8 @@ if(cmd === `${prefix}emoji-list`) {
 //////
 ///////
 ////////
-client.on('message', message =>{
-    let args = message.content.split(' ');
-    let prefix = '!!';
-    
+/////////
     if(args[0] === `${prefix}avatar`){
-	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
         let mentions = message.mentions.members.first()
         if(!mentions) {
           let sicon = message.author.avatarURL
@@ -292,7 +264,6 @@ client.on('message', message =>{
           message.channel.send({embed})
         }
     };
-});
 //
 ///
 ////
@@ -300,14 +271,8 @@ client.on('message', message =>{
 //////
 ///////
 ////////
-client.on('message', message => {
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(0);
-    let prefix = '!!';
-
-    if(cmd === `${prefix}ping`) {
-    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
+/////////
+if(cmd === `${prefix}ping`) {
     let embed = new Discord.RichEmbed()
     .setColor(3447003)
     .setTitle("Pong!!")
@@ -315,8 +280,7 @@ client.on('message', message => {
     .setFooter(`Requested by | ${message.author.tag}`);
     message.delete().catch(O_o=>{})
     message.channel.send(embed);
-    }
-});
+}
 //
 ///
 ////
@@ -324,21 +288,8 @@ client.on('message', message => {
 //////
 ///////
 ////////
-
-//
-///
-////
-/////
-//////
-///////
-////////
-client.on('message', message =>{
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let prefix = '!!';
+/////////
     if(cmd === `${prefix}report`){
-	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
         let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
         if(!rUser) return message.channel.send("Idk who 2 report ??\n Correct usage: **(!!report @mention (reason))**");
         let reason = args.join(" ").slice(22);
@@ -361,7 +312,6 @@ client.on('message', message =>{
         message.channel.send(`<@${rUser.id}>, Just reported for ${reason}!`).then(message =>{message.delete(11000)});
         reportschannel.send(reportEmbed);
     };
-});
 //
 ///
 ////
@@ -369,9 +319,8 @@ client.on('message', message =>{
 //////
 ///////
 ////////
-client.on('message',async message => {
+/////////
     if(message.content.startsWith("!restart")) {
-	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
         if(message.author.id !== "426295568688611328") return message.reply('You aren\'t the bot owner.');
         message.channel.send('**Restarting.**').then(msg => {
             setTimeout(() => {
@@ -388,7 +337,6 @@ client.on('message',async message => {
             client.login(process.env.BOT_TOKEN);
         },3000);
     }
-});
 //
 ///
 ////
@@ -396,15 +344,8 @@ client.on('message',async message => {
 //////
 ///////
 ////////
-client.on('message', async message =>{
-
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let prefix = '!!';
-    let sicon = message.author.displayAvatarURL;
-    if(cmd === `${prefix}help`) {
-	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
+/////////
+if(cmd === `${prefix}help`) {
         var generalhelp = new Discord.RichEmbed()
             .setTitle("**List of A general Commands..**\n")
 	    .setDescription("**The bot prefix is (!!) btw.**")
@@ -426,7 +367,6 @@ client.on('message', async message =>{
         message.author.send(generalhelp);
 	message.channel.send("Ok, i sent the commands list for u!").then(message =>{message.delete(11000)})
     }
-});
 //
 ///
 ////
@@ -434,22 +374,8 @@ client.on('message', async message =>{
 //////
 ///////
 ////////
-
-//
-///
-////
-/////
-//////
-///////
-////////
-client.on('message', async message =>{
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let PREFIX = '!!music';
-    let sicon = message.author.displayAvatarURL;
-    if(cmd === `${PREFIX}`) {
-	if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
+/////////
+if(cmd === `${prefix}music`) {
         var musichelp = new Discord.RichEmbed()
         .setTitle("**List of A music Commands**\n") 
         .addField(" - play", "To play a music & join the voice, (Correct usage: !!play Song name or A youtube URL)")
@@ -463,7 +389,6 @@ client.on('message', async message =>{
     message.delete().catch(O_o=>{}) 
     message.author.send(musichelp);
 }
-});
 //
 ///
 ////
@@ -471,10 +396,8 @@ client.on('message', async message =>{
 //////
 ///////
 ////////
-client.on('message', message => {
-    if(message.content.startsWith(prefix + 'gif')) {
-    let args = message.content.split(' ').slice(1).join(' ')
-    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
+/////////
+if(message.content.startsWith(prefix + 'gif')) {
     if (!args) return message.reply('Insert A gif name!').then((message.delete().catch(O_o=>{})));
     gif.query(args).then(gifUrl => {
         message.channel.send({
@@ -484,8 +407,7 @@ client.on('message', message => {
             }]
         });
     });
-} 
-});
+}
 //
 ///
 ////
@@ -493,9 +415,8 @@ client.on('message', message => {
 //////
 ///////
 ////////
-client.on('message', message => {
-  if(message.content.startsWith(prefix + 'move-all')) {
-  if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
+/////////
+if(message.content.startsWith(prefix + 'move-all')) {
   if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send("You don't have enough permissions to use this command!");
   if (!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("You don't have enough permissions to use this command!");
   if (message.member.voiceChannel == null) return message.channel.send(`You should join A voice channel to use this command!`)
@@ -517,10 +438,7 @@ client.on('message', message => {
          msg.edit('**Moving Users to your voice channel...**');
       },2000)
   });
-
-
-  }
-});
+}
 //
 ///
 ////
@@ -528,9 +446,8 @@ client.on('message', message => {
 //////
 ///////
 ////////
-  client.on('message', message => {
-    if (message.content.startsWith("!!tra")) {
-    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(11000)})
+/////////
+if (message.content.startsWith("!!tra")) {
     const translate = require('google-translate-api');
     const Discord = require('discord.js');
 
@@ -572,8 +489,17 @@ client.on('message', message => {
             }
         });
     });
-    }
+}
+//
+///
+////
+/////
+//////
+///////
+////////
+/////////
 });
+
 /*
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -603,7 +529,8 @@ client.on('message', message => {
 ///////
 ////////
 */
-client.on('message', async msg => { 
+client.on('message', async msg => {
+const prefix = "!!",
 	if (msg.author.bot) return undefined;
     if (!msg.content.startsWith(prefix)) return undefined;
     
