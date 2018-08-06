@@ -33,7 +33,6 @@ const client = new Discord.Client();
 
 //
 ///
-const prefix = '!!';
 
 const developers = ["426295568688611328"]
 
@@ -84,22 +83,14 @@ client.on('ready', async () => {
 
 client.on("message", async message => {
     if(message.author.client) return;
-    if(message.channel.type === "dm") return
+    if(message.channel.type === "dm") return;
     
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-
-});
-
-
-//emoji link code
-client.on('message', message =>{
-    let args = message.content.split(' ');
-    let prefix = '!!';
-    
-    if(args[0] === `${prefix}get-emoji`){
-    if(message.channel.type === 'dm') return message.channel.send('Oey! Nibba type the commands in servers.').then(message =>{message.delete(966)})
+    let prefix = settings.prefix;
+//
+if(args[0] === `${prefix}get-emoji`){
     
     let findEmoji = args[1];
   
@@ -120,6 +111,16 @@ client.on('message', message =>{
   
     message.channel.send({ embed  : EmojiEmbed });
     };
+
+});
+
+
+//emoji link code
+client.on('message', message =>{
+    let args = message.content.split(' ');
+    let prefix = '!!';
+    
+
 });
 //
 ///
