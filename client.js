@@ -86,8 +86,16 @@ client.on("message", async message => {
     let args = messageArray.slice(1);
     let prefix = settings.prefix;
     let adminprefix = settings.adminprefix;
-    let developers = settings.developers
+    let developers = settings.developers;
+    var argresult = message.content.split(` `).slice(1).join(' ');
 //
+///
+////
+/////
+//////
+///////
+////////
+/////////
 if(args[0] === `${prefix}get-emoji`){
     
     let findEmoji = args[1];
@@ -109,17 +117,6 @@ if(args[0] === `${prefix}get-emoji`){
   
     message.channel.send({ embed  : EmojiEmbed });
     };
-
-});
-
-
-//emoji link code
-client.on('message', message =>{
-    let args = message.content.split(' ');
-    let prefix = '!!';
-    
-
-});
 //
 ///
 ////
@@ -127,8 +124,7 @@ client.on('message', message =>{
 //////
 ///////
 ////////
-client.on('message', message => {
-    var argresult = message.content.split(` `).slice(1).join(' ');
+/////////
       if (!developers.includes(message.author.id)) return;
       
       if (message.content.startsWith(adminprefix + 'ply')) {
@@ -175,7 +171,17 @@ client.on('message', message => {
         message.channel.send(`**Ok, status changed to..** **${argresult}!**`).then(message =>{message.delete(11000)});
     }
 
+//
 });
+
+//
+///
+////
+/////
+//////
+///////
+////////
+
 /*
 //
 //
