@@ -34,10 +34,6 @@ const client = new Discord.Client();
 //
 ///
 
-const developers = ["426295568688611328"]
-
-const adminprefix = '!';
-
 //
 
 
@@ -89,6 +85,8 @@ client.on("message", async message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let prefix = settings.prefix;
+    let adminprefix = settings.adminprefix;
+    let developers = settings.developers
 //
 if(args[0] === `${prefix}get-emoji`){
     
