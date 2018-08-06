@@ -421,7 +421,7 @@ client.on('message', message =>{
     let prefix = '!!';
     
     if(args[0] === `${prefix}avatar`){
-	  let id = message.id.members.first()
+	  var id = message.user.id
 	  if(!id) {
 	    let sicon = id.user.avatarURL
 	    let embed = new Discord.RichEmbed()
