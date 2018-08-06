@@ -435,21 +435,7 @@ client.on('message', async message =>{
 //////
 ///////
 ////////
-client.on('message', message =>{
-    let args = message.content.split(' ');
-    let prefix = '!!';
-    
-    if(args[0] === `${prefix}avatar`){
-	  var id = message.user.id
-	  if(!id) {
-	    let sicon = id.user.avatarURL
-	    let embed = new Discord.RichEmbed()
-	    .setColor("#5074b3")
-	    .setImage(sicon)
-	    message.channel.send({embed})
-        }
-	}
-});
+
 //
 ///
 ////
@@ -629,7 +615,7 @@ client.on('message', async msg => {
 	let command = msg.content.toLowerCase().split(" ")[0];
 	command = command.slice(prefix.length)
 
-	if (command === `p`) {
+	if (command === `p`, `play`) {
 		const voiceChannel = msg.member.voiceChannel;
         
         if (!voiceChannel) return msg.channel.send("I can't find you in any voice channel!");
