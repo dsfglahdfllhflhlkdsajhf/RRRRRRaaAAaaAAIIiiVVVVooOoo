@@ -54,6 +54,7 @@ client.on('ready', function () {
 ///////
 ////////
 client.on('ready', async () => {
+    client.user.setGame('!!help')
     client.user.setStatus("online")
     console.log('╔[═════════════════════════════════════════════════════]╗')
     console.log('')
