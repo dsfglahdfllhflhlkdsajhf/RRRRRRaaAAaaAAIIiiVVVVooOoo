@@ -1,7 +1,5 @@
 const botconfig = require("./botconfig.json");
 
-const tokenfile = require("./token.json");
-
 let coins = require("./coins.json");
 
 const Discord = require('discord.js');
