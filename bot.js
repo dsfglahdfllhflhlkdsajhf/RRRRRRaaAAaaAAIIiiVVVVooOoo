@@ -266,7 +266,7 @@ client.on('message', message =>{
     let args = message.content.split(' ');
     let prefix = '!!';
     
-    if(args[0] === `${prefix}avatar`) {
+    if(args[0] === `${prefix}id-avatar`) {
         let user;
         let messageArray = message.content.split(" ");
         if(message.mentions.users.first()) {
