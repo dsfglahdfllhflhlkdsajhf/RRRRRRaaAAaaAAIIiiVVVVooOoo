@@ -428,9 +428,14 @@ client.on('message', async message =>{
 ///////
 ////////
 
-client.on("message", message => {
-        if (message.content === "set-prefix") {
-        if (message.author.id !== "426295568688611328" && !message.member.hasPermission("MANAGE_GUILD")) return message.channel.send(`yo! you don't have enough permissions to do that!`);
+client.on('message', message => {
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(0);
+    let prefix = "!!";
+
+if(cmd === `${prefix}set-prefix`)  {
+        if (!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send(`yo! you don't have enough permissions to do that!`);
   	let args = message.content.split(" ").slice(1);
         let arg = args.join("").substring(message.length)
         if (!arg) return message.channel.send(`Please add a prefix after command like \`\`${prefix}setprefix &\`\``);
@@ -448,6 +453,7 @@ client.on("message", message => {
 	.setColor('#5074b3')
 	message.channel.send(embed)
     }
+});
 });
 //
 ///
