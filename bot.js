@@ -1,4 +1,4 @@
-const botconfig = require("./botconfig.json");
+const settings = require("./settings.json");
 
 let coins = require("./coins.json");
 
