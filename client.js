@@ -1,7 +1,5 @@
 const settings = require("./settings.json");
 
-let coins = require("./coins.json");
-
 const Discord = require('discord.js');
 
 const Util = require('discord.js');
@@ -170,7 +168,24 @@ if(args[0] === `${prefix}get-emoji`){
         client.user.setStatus(argresult)
         message.channel.send(`**Ok, status changed to..** **${argresult}!**`).then(message =>{message.delete(11000)});
     }
+//
+///
+////
+/////
+//////
+///////
+////////
+/////////
+    if (!developers.includes(message.author.id)) return;
 
+    	if(cmd === `${adminprefix}say`) {
+    	var sayMessage = message.content.substring(5)
+    	let SAYembed = new Discord.RichEmbed()
+    	.setColor(3447003)
+    	.setDescription(sayMessage);
+    	message.delete().catch(O_o=>{}) 
+    	message.channel.send(SAYembed);
+    }
 //
 });
 
@@ -309,23 +324,6 @@ client.on('message', message => {
 //////
 ///////
 ////////
-client.on('message', message =>{
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-
-    if (!developers.includes(message.author.id)) return;
-
-    if(cmd === `${adminprefix}say`) {
-    var sayMessage = message.content.substring(5)
-    let SAYembed = new Discord.RichEmbed()
-    .setColor(3447003)
-    .setDescription(sayMessage);
-    message.delete().catch(O_o=>{}) 
-    message.channel.send(SAYembed);
-}
-
-});
 
 //
 ///
