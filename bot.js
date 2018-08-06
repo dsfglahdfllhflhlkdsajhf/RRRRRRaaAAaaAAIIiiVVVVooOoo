@@ -446,6 +446,7 @@ client.on("message", message => {
 	.setDescription('The prefix now is', '${arg}')
 	.setThumbnail(sicon)
 	.setColor('#5074b3')
+	message.channel.send(embed)
     }
 });
 //
