@@ -9,7 +9,6 @@
       "discord.js-musicbot-addon":"^12.0.6",
       "opusscript": "0.0.6",
       "ffmpeg":"^0.0.4",
-      "ffmpeg-binaries":"^4.0.0",
       "get-youtube-id":"^1.0.0",
       "gif-search":"^2.0.1",
       "math-expression-evaluator":"^1.2.17",
