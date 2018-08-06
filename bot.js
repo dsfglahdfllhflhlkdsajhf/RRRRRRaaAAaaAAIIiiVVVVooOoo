@@ -262,6 +262,25 @@ client.on('message', message =>{
         }
     };
 });
+client.on('message', message =>{
+    let args = message.content.split(' ');
+    let prefix = '!!';
+    
+    if(args[0] === `${prefix}avatar`) {
+        let user;
+        let messageArray = message.content.split(" ");
+        if(message.mentions.users.first()) {
+          user = message.mentions.users.first();
+        } else if(messageArray[1]) {
+          user = messageArray[1];
+        }
+	let sicon = message.user.avatarURL
+	let embed = new Discord.RichEmbed()
+	.setImage(sicon)
+	.setColor("#5074b3")
+	message.channel.send(embed)
+    }
+});
 //
 ///
 ////
