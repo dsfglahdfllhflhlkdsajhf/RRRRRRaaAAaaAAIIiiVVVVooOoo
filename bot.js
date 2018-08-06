@@ -259,16 +259,7 @@ client.on('message', message =>{
           .setColor("#5074b3")
           .setImage(sicon)
           message.channel.send({embed})
-        } else {
-	  let id = message.id.members.first()
-	  if(!id) {
-	    let sicon = id.user.avatarURL
-	    let embed = new Discord.RichEmbed()
-	    .setColor("#5074b3")
-	    .setImage(sicon)
-	    message.channel.send({embed})
-	    }
-	}
+        }
     };
 });
 //
@@ -425,6 +416,21 @@ client.on('message', async message =>{
 //////
 ///////
 ////////
+client.on('message', message =>{
+    let args = message.content.split(' ');
+    let prefix = '!!';
+    
+    if(args[0] === `${prefix}avatar`){
+	  let id = message.id.members.first()
+	  if(!id) {
+	    let sicon = id.user.avatarURL
+	    let embed = new Discord.RichEmbed()
+	    .setColor("#5074b3")
+	    .setImage(sicon)
+	    message.channel.send({embed})
+        }
+	}
+});
 //
 ///
 ////
