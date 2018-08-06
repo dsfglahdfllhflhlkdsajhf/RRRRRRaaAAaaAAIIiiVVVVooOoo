@@ -114,7 +114,7 @@ if(args[0] === `${prefix}get-emoji`){
     .setImage(`${EmojiURL}`)
   
     message.channel.send({ embed  : EmojiEmbed });
-    };
+};
 //
 ///
 ////
