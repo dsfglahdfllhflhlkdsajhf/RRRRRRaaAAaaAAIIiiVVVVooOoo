@@ -16,8 +16,6 @@ const ytdl = require('ytdl-core');
 
 const fs = require('fs');
 
-const db = fs.database();
-
 const math = require('math-expression-evaluator');
 
 const stripIndents = require('common-tags').stripIndents;
