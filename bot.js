@@ -258,7 +258,16 @@ client.on('message', message =>{
           .setColor("#5074b3")
           .setImage(sicon)
           message.channel.send({embed})
-        }
+        } else {
+	  let id = message.id.members.first()
+	  if(!id) {
+	    let sicon = id.user.avatarURL
+	    let embed = new Discord.RichEmbed()
+	    .setColor("#5074b3")
+	    .setImage(sicon)
+	    message.channel.send({embed})
+	    }
+	}
     };
 });
 //
@@ -309,27 +318,6 @@ client.on('message', message =>{
 
 });
 
-
-client.on('message', message =>{
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-
-    if (!developers.includes(message.author.id)) return;
-
-    if(cmd === `${adminprefix}send`) {
-    let mentions = message.mentions.members.first()
-    if (!mentions) {
-    var sayMessage = message.content.substring(5)
-    let SAYembed = new Discord.RichEmbed()
-    .setColor(3447003)
-    .setDescription(sayMessage);
-    message.delete().catch(O_o=>{}) 
-    message.mentions.send(SAYembed);
-    }
-}
-
-});
 //
 ///
 ////
