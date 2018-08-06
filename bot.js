@@ -1,3 +1,9 @@
+const botconfig = require("./botconfig.json");
+
+const tokenfile = require("./token.json");
+
+let coins = require("./coins.json");
+
 const Discord = require('discord.js');
 
 const Util = require('discord.js');
@@ -24,7 +30,7 @@ const stripIndents = require('common-tags').stripIndents;
 
 const gif = require("gif-search");
 
-const client = new Discord.Client({disableEveryone: true});
+const client = new Discord.Client();
 
 
 //
