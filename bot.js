@@ -54,8 +54,7 @@ client.on('ready', function () {
 ///////
 ////////
 client.on('ready', async () => {
-    client.user.setActivity("you!", {type: "WATCHING"})
-    client.user.setStatus("dnd")
+    client.user.setStatus("online")
     console.log('╔[═════════════════════════════════════════════════════]╗')
     console.log('')
     console.log('')
