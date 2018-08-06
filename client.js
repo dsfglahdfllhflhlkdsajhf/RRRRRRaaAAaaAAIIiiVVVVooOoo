@@ -24,7 +24,6 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
-const BOT_TOKEN = 'NDc1Mzg2NjI0NjUwMzc5Mjgw.DkoHuQ.dgc9T-UW1AEXB5beVn9Kl6fPH3Q';
 //
 ///
 const prefix = '!!';
