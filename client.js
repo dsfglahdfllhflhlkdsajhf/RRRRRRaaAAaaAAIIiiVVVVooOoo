@@ -438,11 +438,14 @@ client.on('message', message =>{
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let prefix = '!!';//بتقدر 
+    let sicon = message.author.displayAvatarURL;
     if(cmd === `${prefix}suggest`) {
-    var suggestMessage = message.content.substring(5)
+    var suggestMessage = message.content.substring(8)
     let suggestEMBED = new Discord.RichEmbed()
     .setColor(3447003)
-    .setDescription(suggestMessage)
+    .setTitle("New suggest just added!!")
+    .setDescription(`**${suggestMessage}**`)
+    .setThumbnail(sicon)
     .setFooter(`Suggested By : ${message.author.tag}`);
     message.delete().catch(O_o=>{}) 
     let suggests = message.guild.channels.find(`name`, "suggests");
