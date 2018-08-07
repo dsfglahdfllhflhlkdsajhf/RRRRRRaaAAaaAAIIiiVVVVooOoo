@@ -434,60 +434,6 @@ client.on('message', async message =>{
 //////
 ///////
 ////////
-client.on('message', async najzx => {
-    if(najzx.content.startsWith("+tv")) {
-      if(!najzx.member.hasPermission('MANAGE_CHANNELS')) return;
-      await najzx.channel.send("ارسل اسم الروم").then(e => {
-      let filter = m => m.author.id === najzx.author.id
-      let name = '';
-      let time = '';
-      let type = '';
-      let limit = '';
-   najzx.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
-      .then(collected => {
-        name = collected.first().content
-        collected.first().delete()
-  e.edit("ارسل مدة الروم بالدقائق لااقل من 2 ولا اعلى من 180")
-  najzx.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
-  .then(co => {
-  if(isNaN(co.first().content)) return najzx.reply("الوقت بالدقائق ! ارقام فقطٍ");
-  if(co.first().content > 180 || co.first().content < 2) return najzx.channel.send("لا اقل من دقيقتان ولا اكثر من 180 دقيقه")
-    time = co.first().content
-  co.first().delete()
-    e.edit("ارسل نوع الروم text, voice")
-  najzx.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
-  .then(col => {
-    type = col.first().content
-  col.first().delete()
-  e.edit("ارسل عدد الاعضاء الذين يستطيعون الدخول")
-  najzx.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
-  .then(coll => {
-    if(isNaN(coll.first().content)) return najzx.reply("عدد الاعضاء يكون بالارقام فقط");
-      limit = coll.first().content
-  coll.first().delete()
-  
-    e.edit("جاري اعداد الغرفه الرجاء الانتضار...")
-    najzx.guild.createChannel(name, type).then(c => {
-      c.edit({
-        userLimit: limit
-      })
-      setTimeout(() => {
-        c.delete()
-        najzx.channel.send("تم انقضاء الوقت")
-      }, Math.floor(time*60000))
-      
-    })
-    e.edit("تم انشاء الغرفه استمتع")
-  
-  })
-  })
-  })
-  })
-  })
-  
-    }
-  })
-
 //
 ///
 ////
