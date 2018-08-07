@@ -92,7 +92,7 @@ client.on('message', message =>{
     let prefix = '!!';
     
     if(args[0] === `${prefix}get-emoji`){
-    
+    if(message.channel.type === 'dm') return message.channel.send("Nope Nope!! u can't get any emoji in DMs (:")
     let findEmoji = args[1];
   
     if(!findEmoji || findEmoji === '') return  message.reply(`Insert the emoji name..`);
@@ -184,7 +184,7 @@ client.on('message', msg => {
     if (msg.content.startsWith(prefix + 'cal')) {
     let args = msg.content.split(" ").slice(1);
     const question = args.join(' ');
-    
+    if (!question) return message.channel.send('Lol, Where is the question')
   if (args.length < 1) {
     msg.reply('Type the question pls!');
 } else {    let answer;
@@ -193,7 +193,7 @@ client.on('message', msg => {
 
       answer = math.eval(question);
     } catch (err) {
-      return msg.reply(`Err: There are errors in your questions!`);
+      return msg.reply(`Error! /n Example of A correct usage **!!cal 9*9**`);
     }
 
   const embed = new Discord.RichEmbed()
@@ -219,9 +219,10 @@ client.on('message', message => {
     let prefix = '!!';
 
 if(cmd === `${prefix}emoji-list`) {
+    if(message.channel.type === 'dm') return message.channel.send('Nope Nope!! there are no emoji list in DMs! (:')
     const List = message.guild.emojis.map(e => e.toString()).join(" ");
 
-    if(!List) return message.channel.send(`There is no emojis in this server ):`)
+    if(!List) return message.channel.send(`There are no emojis in this server )':`)
 
     const EmojiList = new Discord.RichEmbed()
     .setTitle("**Server emojis :**")
@@ -245,6 +246,7 @@ client.on('message', message =>{
     let prefix = '!!';
     
     if(args[0] === `${prefix}avatar`){
+	if(message.channel.type === 'dm') return message.channel.send("Nope Nope!! u can't use avatar command in DMs (:")
         let mentions = message.mentions.members.first()
         if(!mentions) {
           let sicon = message.author.avatarURL
@@ -275,6 +277,7 @@ client.on('message', message => {
     let prefix = '!!';
 
     if(cmd === `${prefix}ping`) {
+    if(message.channel.type === 'dm') return message.channel.send('Nope Nope!! u  only can tests my Ping in servers man (:')
     let embed = new Discord.RichEmbed()
     .setColor(3447003)
     .setTitle("Pong!!")
@@ -298,7 +301,7 @@ client.on('message', message =>{
 
     if (!developers.includes(message.author.id)) return;
 
-    if(cmd === `${adminprefix}say`) {
+    if(cmd === `${adminprefix}Say`) {
     var sayMessage = message.content.substring(5)
     let SAYembed = new Discord.RichEmbed()
     .setColor(3447003)
@@ -317,16 +320,10 @@ client.on('message', message =>{
 
     if (!developers.includes(message.author.id)) return;
 
-    if(cmd === `${adminprefix}send`) {
-    let mentions = message.mentions.members.first()
-    if (!mentions) {
-    var sayMessage = message.content.substring(5)
-    let SAYembed = new Discord.RichEmbed()
-    .setColor(3447003)
-    .setDescription(sayMessage);
+    if(cmd === `${adminprefix}say`) {
+    var saymessage = message.content.substring(5)
     message.delete().catch(O_o=>{}) 
-    message.mentions.send(SAYembed);
-    }
+    message.channel.send(saymessage);
 }
 
 });
@@ -358,11 +355,13 @@ client.on('message', message =>{
         .addField("- Reason :", reason);
     
         let reportschannel = message.guild.channels.find(`name`, "reports");
-        if(!reportschannel) return message.channel.send("You should to make `reports` channel.");
+        if(!reportschannel) return message.channel.send("Oey!! there is no **reports** channel tell Admins about this.");
     
     
         message.delete().catch(O_o=>{});
-        message.author.send(`<@${rUser.id}>, Reported Successfully!!`)
+	message.channel.send('Hey, Check your cool DM!')
+        message.author.send(`yo! I just sent this report to the server admins >.>`);
+	message.author.send(reportEmbed);
         reportschannel.send(reportEmbed);
     };
 });
@@ -424,9 +423,8 @@ client.on('message', async message =>{
             .setColor("#5074b3")
             .setFooter("Type (!!music) to display the music commands.")
             .setThumbnail(sicon)
-	message.delete().catch(O_o=>{}) 
         message.author.send(generalhelp);
-	message.channel.send("Ok, i sent the commands list for u!").then(message =>{message.delete(11000)})
+	message.channel.send("Okey, i sent the commands list for u!").then(message =>{message.delete(10000)})
     }
 });
 //
@@ -452,7 +450,7 @@ client.on('message', async message =>{
     if(cmd === `${PREFIX}`) {
         var musichelp = new Discord.RichEmbed()
         .setTitle("**List of A music Commands**\n") 
-        .addField(" - p", "To play a music & join the voice, (Correct usage: !!play Song name or A youtube URL)")
+        .addField(" - p", "To play A music & join the voice, (Correct usage: !!play Song name or A youtube URL)")
         .addField(" - queue", "To show the songs queue & now playing music, (Coorect usage: !!queue)") 
         .addField(" - pause", "Pause A music for Temporary time, (Correct usage: !!pause)")
         .addField(" - resume", "To unpause the music, (Correct usage: !!resume)")
@@ -460,7 +458,6 @@ client.on('message', async message =>{
         .setColor("#5074b3")
         .setThumbnail(sicon)
         .setFooter("Type (!!admin) to display the admin commands.")
-    message.delete().catch(O_o=>{}) 
     message.author.send(musichelp);
 }
 });
@@ -474,7 +471,7 @@ client.on('message', async message =>{
 client.on('message', message => {
     if(message.content.startsWith(prefix + 'gif')) {
     let args = message.content.split(' ').slice(1).join(' ')
-    if(message.channel.type === 'dm') return message.channel.send('Only For Servers')
+    if(message.channel.type === 'dm') return message.channel.send('Nope Nope!! please use my cool commands in servers man (:')
     if (!args) return message.reply('Insert A gif name!').then((message.delete().catch(O_o=>{})));
     gif.query(args).then(gifUrl => {
         message.channel.send({
@@ -508,12 +505,12 @@ client.on('message', message => {
       m.setVoiceChannel(author)
 
     })
-  message.channel.send(`**Moving Users to your voice channel.**`).then(msg => {
+  message.channel.send(`**Moving A cool Users to your voice channel.**`).then(msg => {
       setTimeout(() => {
-         msg.edit('**Moving Users to your voice channel..**');
+         msg.edit('**Moving A cool Users to your voice channel..**');
       },1000);
       setTimeout(() => {
-         msg.edit('**Moving Users to your voice channel...**');
+         msg.edit('**Moving A cool Users to your voice channel...**');
       },2000)
   });
 
@@ -529,7 +526,7 @@ client.on('message', message => {
 ////////
   client.on('message', message => {
     if (message.content.startsWith("!!tra")) {
-
+    if(message.channel.type === 'dm') return message.channel.send('Nope Nope!! please use my cool commands in servers man (:')
     const translate = require('google-translate-api');
     const Discord = require('discord.js');
 
