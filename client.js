@@ -447,7 +447,8 @@ client.on('message', async message =>{
     let bReason = args.join(" ").slice(22);
     if (!bReason) return message.channel.send('Type the ban reason please.')
     if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("`You don't have enough permissions to use this command.`");
-    
+    if(bUser.hasPermission('ADMINISTRATOR')) return message.channel.send("Why ban Admins :^ ?");
+
     let banEmbed = new Discord.RichEmbed()
     .setTitle("**User just banned :**\n")
     .setColor("#5074b3")
