@@ -151,19 +151,19 @@ client.on('message', message => {
         message.channel.send(`**Ok, Streaming..** **${argresult}!**`).then(message =>{message.delete(11000)});
     }
 
-     if (message.content.startsWith(adminprefix + 'set-name')) {
+     if (message.content.startsWith(adminprefix + 's-name')) {
         client.user.setUsername(argresult).then
         message.channel.send(`**Changing my name to..** **${argresult}!** `).then(message =>{message.delete(11000)});
 
     } else
 
-     if (message.content.startsWith(adminprefix + 'set-avatar')) {
+     if (message.content.startsWith(adminprefix + 's-avatar')) {
         client.user.setAvatar(argresult);
         message.channel.send(`**Changing my avatar to..** ${argresult}`).then(message =>{message.delete(11000)});
 
     } else
 
-    if (message.content.startsWith(adminprefix + 'set-status')) {
+    if (message.content.startsWith(adminprefix + 's-status')) {
         client.user.setStatus(argresult)
         message.channel.send(`**Ok, status changed to..** **${argresult}!**`).then(message =>{message.delete(11000)});
     }
@@ -218,7 +218,7 @@ client.on('message', message => {
     let args = messageArray.slice(0);
     let prefix = '!!';
 
-if(cmd === `${prefix}emoji-list`) {
+if(cmd === `${prefix}emojis`) {
     if(message.channel.type === 'dm') return message.channel.send('Nope Nope!! there are no emoji list in DMs! (:')
     const List = message.guild.emojis.map(e => e.toString()).join(" ");
 
@@ -232,6 +232,34 @@ if(cmd === `${prefix}emoji-list`) {
 
     message.channel.send(EmojiList);
 
+}
+});
+//
+///
+////
+/////
+//////
+///////
+////////
+client.on('message', message => {
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(0);
+    let prefix = '!!';
+
+if(cmd === `${prefix}u-info`) {
+	let embed = new Discord.RichEmbed()
+	.setThumbnail(message.author.avatarURL)
+	.setColor("#8A2BE2")
+	.setDescription(`User info for: **${message.author.username}**`)
+	.addField("Avatar:", `[Link](${message.author.avatarURL})`, true)
+	.addField("Status:", message.author.presence.status, true)
+	.addField("Bot: ", message.author.bot, true)
+	.addField("Now playing: ", message.author.presence.game ? message.author.presence.game : "Not in game", true)
+	.addField("Tag: ", message.author.tag, true)
+	.addField("Discriminator:", message.author.discriminator, true)
+	.addBlankField()
+	.setFooter(`Account created at: ${message.author.createdAt}`);
 }
 });
 //
@@ -351,8 +379,9 @@ client.on('message', message =>{
         .addField("- Reported User :", `${rUser} (${rUser.id})`)
         .addField("- Reported By :", `${message.author} (${message.author.id})`)
         .addField("- Reported In :", message.channel)
-        .addField("- Report Time :", message.createdAt.toLocaleString(),true)
-        .addField("- Reason :", reason);
+        .addField("- Reason :", reason)
+	.setFooter("Report Time :", message.createdAt);
+
     
         let reportschannel = message.guild.channels.find(`name`, "reports");
         if(!reportschannel) return message.channel.send("Oey!! there is no **reports** channel tell Admins about this.");
