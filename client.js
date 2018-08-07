@@ -360,8 +360,7 @@ client.on('message', message =>{
     
         message.delete().catch(O_o=>{});
 	message.channel.send('Hey, Check your cool DM!')
-        message.author.send(`yo! I just sent this report to the server admins >.>`);
-	message.author.send(reportEmbed);
+	message.author.send("Your report just recived to the Admins!",reportEmbed);
         reportschannel.send(reportEmbed);
     };
 });
@@ -434,33 +433,7 @@ client.on('message', async message =>{
 //////
 ///////
 ////////
-client.on('message', async message =>{
 
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let prefix = '!!';
-
-    if(cmd === `${prefix}ban`) {
-    let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if (!bUser) return message.channel.send("Idk who 2 ban ??");
-    let bReason = args.join(" ").slice(22);
-    if (!bReason) return message.channel.send('Type the ban reason please.')
-    if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("`You don't have enough permissions to use this command.`");
-    if(bUser.hasPermission('ADMINISTRATOR')) return message.channel.send("Why ban Admins :^ ?");
-
-    let banEmbed = new Discord.RichEmbed()
-    .setTitle("**User just banned :**\n")
-    .setColor("#5074b3")
-    .addField("- Banned User :", `${bUser} (${bUser.id})`)
-    .addField("- Banned By :", `<@${message.author.id}> (${message.author.id})`)
-    .addField("- Ban Reason", `${bReason}`);
-
-    message.guild.member(bUser).ban(bReason);
-    message.channel.send(banEmbed);
-
-    return;
-}
 //
 ///
 ////
