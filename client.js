@@ -854,3 +854,4 @@ function play(guild, song) {
 
 
 client.login(process.env.BOT_TOKEN);
+});
