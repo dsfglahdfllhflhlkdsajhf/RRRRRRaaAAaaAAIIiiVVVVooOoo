@@ -433,7 +433,24 @@ client.on('message', async message =>{
 //////
 ///////
 ////////
+client.on('message', message =>{
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+    let prefix = '!!';//بتقدر 
+    if(cmd === `${prefix}suggest`) {
+    var suggestMessage = message.content.substring(5)
+    let suggestEMBED = new Discord.RichEmbed()
+    .setColor(3447003)
+    .setDescription(suggestMessage)
+    .setFooter(`Suggested By : ${author.tag}`);
+    message.delete().catch(O_o=>{}) 
+    let suggests = message.guild.channels.find(`name`, "suggests");
+    if (!suggests) return message.channel.send("You should make A **suggests** channel!")
+    suggests.send(suggestEMBED);
+}
 
+});
 //
 ///
 ////
