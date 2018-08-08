@@ -260,6 +260,7 @@ if(cmd === `${prefix}u-info`) {
 	.addField("Discriminator:", message.author.discriminator, true)
 	.addBlankField()
 	.setFooter(`Account created at: ${message.author.createdAt}`);
+	message.channel.send(embed)
 }
 });
 //
