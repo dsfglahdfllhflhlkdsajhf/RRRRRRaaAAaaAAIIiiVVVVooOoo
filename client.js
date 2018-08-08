@@ -850,7 +850,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 		console.log(serverQueue.songs);
 		if (playlist) return undefined;
 		else return msg.channel.send(`**${song.title}**, just added to the queue! `);
-	} else if (command === `repeat`) {
+	} if (command === `repeat`) {
         	let songsQueue = [];
         	let isPlaying = false;
         	let queue = [];
