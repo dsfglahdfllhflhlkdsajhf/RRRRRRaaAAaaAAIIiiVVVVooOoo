@@ -468,7 +468,7 @@ client.on('message', message =>{
     let prefix = '!!';
 
 if(cmd === `${prefix}suggest`) {
-    var suggestMessage = message.content.substring(8)
+    var suggestMessage = message.content.substring(9)
     let suggestEMBED = new Discord.RichEmbed()
     .setColor(3447003)
     .setTitle("New suggest just added!!")
