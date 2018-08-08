@@ -53,7 +53,7 @@ client.on('ready', function () {
 ///////
 ////////
 client.on('ready', async () => {
-    client.user.setActivity("!!help", {type: "PLAYING"})
+    client.user.setGame("!!help", "https://www.twitch.tv/idk");
     client.user.setStatus("dnd")
     console.log('╔[═════════════════════════════════════════════════════]╗')
     console.log('')
