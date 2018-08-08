@@ -638,7 +638,7 @@ client.on('message', message => {
 
     if(cmd === `${prefix}SET.AVATAR`) {
 if(!args[1].match(/^(jpeg|jpg|gif|png)/)){
-client.user.setAvatar(args[1]).then(message.channel.send(`:ballot_box_with_check: Successfully changed the bot avatar to`, {embed: {image: {url: args[1]}}})).catch(err => message.channel.send(`\`\`${err}\`\``))
+client.user.setAvatar(!args[1]).then(message.channel.send(`:ballot_box_with_check: Successfully changed the bot avatar to`, {embed: {image: {url: args[1]}}})).catch(err => message.channel.send(`\`\`${err}\`\``))
 }
 }
 });
