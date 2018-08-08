@@ -250,15 +250,13 @@ client.on('message', message => {
 if(cmd === `${prefix}u-info`) {
 	let embed = new Discord.RichEmbed()
 	.setThumbnail(message.author.avatarURL)
-	.setColor("#8A2BE2")
-	.setDescription(`User info for: **${message.author.username}**`)
+	.setColor("#5074b3")
+	.setTitle(`The info of : **${message.author.username}**`)
 	.addField("Avatar:", `[Link](${message.author.avatarURL})`, true)
 	.addField("Status:", message.author.presence.status, true)
 	.addField("Bot: ", message.author.bot, true)
-	.addField("Now playing: ", message.author.presence.game ? message.author.presence.game : "Not in game", true)
 	.addField("Tag: ", message.author.tag, true)
 	.addField("Discriminator:", message.author.discriminator, true)
-	.addBlankField()
 	.setFooter(`Account created at: ${message.author.createdAt}`);
 	message.channel.send(embed)
 }
@@ -389,9 +387,8 @@ client.on('message', message =>{
     
     
         message.delete().catch(O_o=>{});
-	message.channel.send('Hey, Check your cool DM!')
-	message.author.send("Your report just recived to the Admins!",reportEmbed);
         reportschannel.send(reportEmbed);
+	message.channel.send('Your report just recived to the admins Ty for the report!').then(message =>{message.delete(10000)})
     };
 });
 //
@@ -468,18 +465,19 @@ client.on('message', message =>{
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    let prefix = '!!';//بتقدر 
+    let prefix = '!!';
 
 if(cmd === `${prefix}suggest`) {
     var suggestMessage = message.content.substring(8)
     let suggestEMBED = new Discord.RichEmbed()
     .setColor(3447003)
     .setTitle("New suggest just added!!")
-    .setDescription(`**${suggestMessage}**`)
-    .setFooter(`Suggested By : ${message.author.tag}`);
-    message.delete().catch(O_o=>{}) 
+    .setDescription(`**${suggestMessage}**`, `Suggested By ${message.author.tag}`)
+    .setFooter(`Suggested At : ${message.createdAt}`);
+
     let suggests = message.guild.channels.find(`name`, "suggests");
-    if (!suggests) return message.channel.send("You should make A **suggests** channel!")
+    if (!suggests) return message.channel.send("You should make A **suggests** channel!");
+    message.delete().catch(O_o=>{});
     suggests.send(suggestEMBED);
 }
 
