@@ -247,7 +247,8 @@ client.on('message', message => {
     let args = messageArray.slice(0);
     let prefix = '!!';
 
-if(cmd === `${prefix}u-info`) {
+
+if(cmd === `${prefix}user-info`) {
 	let embed = new Discord.RichEmbed()
 	.setThumbnail(message.author.avatarURL)
 	.setColor("#5074b3")
@@ -259,6 +260,7 @@ if(cmd === `${prefix}u-info`) {
 	.addField("Discriminator:", message.author.discriminator, true)
 	.setFooter(`Account created at: ${message.author.createdAt}`);
 	message.channel.send(embed)
+	
 }
 });
 //
@@ -437,13 +439,15 @@ client.on('message', async message =>{
 	    .setDescription("**The bot prefix is (!!) btw.**")
             .addField(" - help", "Displays this message, (Correct usage: !!help)")
             .addField(" - ping", "Tests my ping, (Correct usage: !!ping)")
-            .addField(" - avatar", "To show your avatar or A mentioned member avatar!") 
-	    .addField(" - emoji-list", "To get the server emoji list! (Correct usage: !!emoji-list)")
+            .addField(" - avatar", "To show your avatar or A mentioned member avatar! (Correct usage: !!avatar @RAIVO#7115)")
+	    .addField(" - user-info", "To get A mentioned user info! (Correct usage: !!user-info @RAIVO#7115)")
+	    .addField(" - emojis", "To get the server emoji list! (Correct usage: !!emoji-list)")
             .addField(" - get-emoji", "To show the emoji image & link! (Correct usage: !!get-emoji :The emoji:)")
             .addField(" - gif", "I will search at gifs that you want! (Example: !!gif hellow)")
 	    .addField(" - tra", "A cool translator, (Correct usage: !!tra hi to Arabic)")
             .addField(" - cal", "A cool calculator, (Example: !!cal 9*9)")
-            .addField(" - report", "report the toxic user!! (Example: !!report @mentionUser he is toxic!)")
+            .addField(" - report", "report the toxic user!! (Example: !!report @RAIVO#7115 he is toxic!)")
+	    .addField(" - suggest", "Suggest A cool suggestion to #suggests channel! (Example: !!suggest Make A movies Room!)")
             .addField(" - say", "I will say what you want! (Example: !!say Hi) **Only bot developers!**")
 	    .addField("- restart", "I will restart my self! **Only bot developers!**")
             .setColor("#5074b3")
