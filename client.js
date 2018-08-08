@@ -451,6 +451,7 @@ client.on('message', async message =>{
             .setColor("#5074b3")
             .setFooter("Type (!!music) to display the music commands.")
             .setThumbnail(sicon)
+	message.delete().catch(O_o=>{});
         message.author.send(generalhelp);
 	message.channel.send("Okey, i sent the commands list for u!").then(message =>{message.delete(10000)})
     }
