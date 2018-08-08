@@ -635,7 +635,7 @@ let messageArray = message.content.split(" ");
 let args = messageArray.slice(1);
 let prefix = '!!';
     if(message.content.startsWith(prefix + 'aavatar')) {
-if(!args[1].match(/\.(jpeg|jpg|gif|png)/)) return message.channel.send(`:x: The url you entered doesn't seems to be an image.`) 
+if(!args[1] = (/\.(jpeg|jpg|gif|png)/)) return message.channel.send(`:x: The url you entered doesn't seems to be an image.`) 
 client.user.setAvatar(args[1]).then(message.channel.send(`:ballot_box_with_check: Successfully changed the bot avatar to`, {embed: {image: {url: args[1]}}})).catch(err => message.channel.send(`\`\`${err}\`\``))
 }
 });
