@@ -25,6 +25,8 @@ const gif = require("gif-search");
 const client = new Discord.Client({disableEveryone: true});
 
 const settings = require('./settings.json')
+
+const token = require('./token.json')
 //
 ///
 let prefix = settings.prefix;
@@ -1012,4 +1014,4 @@ function play(guild, song) {
 
 
 
-client.login(process.env.BOT_TOKEN);
+client.login(token);
