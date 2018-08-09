@@ -385,7 +385,7 @@ client.on('message', message =>{
 
     
         let reportschannel = message.guild.channels.find(`name`, "reports-log");
-        if(!reportschannel) return message.channel.send("Oey!! there is no **reports-log** channel tell Admins about this.");
+        if(!reportschannel) return message.channel.send("Oey!! there is no **reports-log** channel tell Admins about this but don't worry your report just recived to the guildOwner").then message.guild.owner.send('User just reported!!', reportEmbed)
     
     
         message.delete().catch(O_o=>{});
