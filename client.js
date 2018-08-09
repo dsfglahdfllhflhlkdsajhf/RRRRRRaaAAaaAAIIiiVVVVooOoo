@@ -384,13 +384,14 @@ client.on('message', message =>{
 	.setFooter("Report Time :", message.createdAt);
 
     
-        let reportschannel = message.guild.channels.find(`name`, "reports");
-        if(!reportschannel) return message.channel.send("Oey!! there is no **reports** channel tell Admins about this.");
+        let reportschannel = message.guild.channels.find(`name`, "reports-log");
+        if(!reportschannel) return message.channel.send("Oey!! there is no **reports-log** channel tell Admins about this.");
     
     
         message.delete().catch(O_o=>{});
         reportschannel.send(reportEmbed);
 	message.channel.send('Your report just recived to the admins Ty for the report!').then(message =>{message.delete(10000)})
+	message.guild.owner.send('User just reported!!', reportEmbed)
     };
 });
 //
