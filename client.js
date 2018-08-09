@@ -24,13 +24,14 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
+const bot_settings = require('./settings.json')
 //
 ///
-const prefix = '!!';
+let prefix = settings.prefix;
 
-const developers = ["426295568688611328"]
+let developers = settings.devs;
 
-const adminprefix = '!';
+let adminprefix = settings.adminprefix;
 
 //
 
