@@ -24,7 +24,7 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
-const bot_settings = require('./settings.json')
+const settings = require('./settings.json')
 //
 ///
 let prefix = settings.prefix;
