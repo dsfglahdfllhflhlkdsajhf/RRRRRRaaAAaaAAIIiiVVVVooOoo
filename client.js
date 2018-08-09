@@ -90,10 +90,12 @@ client.on("message", async message => {
 
 //emoji link code
 client.on('message', message =>{
-    let args = message.content.split(' ');
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
     let prefix = "!!",
     
-    if(args[0] === `${prefix}get-emoji`){
+    if(cmd === `${prefix}get-emoji`){
     if(message.channel.type === 'dm') return message.channel.send("Nope Nope!! u can't get any emoji in DMs (:")
     let findEmoji = args[1];
   
