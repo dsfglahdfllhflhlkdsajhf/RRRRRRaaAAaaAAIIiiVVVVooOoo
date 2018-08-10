@@ -737,29 +737,6 @@ client.on('message', message => {
 //////
 ///////
 ////////
-client.on('message', message =>{
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let prefix = "!!";
-    let mUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    let sicon = message.mUser.displayAvatarURL
-    if(cmd === `${prefix}mute`) {
-        if(!message.guild.member.hasPermission('MANAGE_CHANNELS')) return message.channel.send("you Don't have enough permissions to use this command")
-            if(mUser.hasPermission('ADMINISTRATOR')) return message.channel.send("I don't have enough permissions to mute this user!")
-                message.guild.mUser.channels.permissions 
-                    "EMBED_LINKS": false,
-                    "SEND_MESSAGES": false,
-                    "ADD_REACTIONS": false
-
-                let embed = new Discord.RichEmbed();
-                .setAuthor(`${sicon}`, mUser.tag)
-                .setDescription('**To unmute him type !!unmute')
-                message.channel.send(embed)
-
-
-    }
-});
 //
 ///
 ////
