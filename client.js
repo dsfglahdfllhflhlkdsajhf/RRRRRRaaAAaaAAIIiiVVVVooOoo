@@ -737,6 +737,32 @@ client.on('message', message => {
 //////
 ///////
 ////////
+client.on('message', message =>{
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+    let prefix = "!!";
+    let role = message.guild.roles.find('name', 'HotBot mute') || message.guild.roles.get(r => r.name === 'HotBot mute');
+    if(cmd === `${prefix}mute`) {
+
+    if(!role) try {
+      message.guild.createRole({
+        name: "HotBot mute",
+        permissions: 0
+      }).then(r => {
+        message.guild.channels.forEach(c => {
+          c.overwritePermissions(r , {
+            SEND_MESSAGES: false,
+            EMBED_LINKS: false,
+            ADD_REACTIONS: false
+          });
+        });
+      });
+    } catch(e) {
+      console.log(e.stack);
+    }
+  }
+});
 //
 ///
 ////
