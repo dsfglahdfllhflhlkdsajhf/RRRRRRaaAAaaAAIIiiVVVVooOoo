@@ -747,6 +747,7 @@ client.on('message', message =>{
     if(cmd === `${prefix}mute`) {
         if(!message.guild.member.hasPermission('MANAGE_CHANNELS')) return message.channel.send("you Don't have enough permissions to use this command")
             if(mUser.hasPermission('ADMINISTRATOR')) return message.channel.send("I don't have enough permissions to mute this user!")
+                const permissions = message.guild.text.channels.permissions
                 message.guild.mUser.channels.permissions {
                     "EMBED_LINKS": false,
                     "SEND_MESSAGES": false,
@@ -755,7 +756,7 @@ client.on('message', message =>{
                 let embed = new Discord.RichEmbed();
                 .setAuthor(`${sicon}`, mUser.tag)
                 .setDescription('**To unmute him type !!unmute')
-            	message.channel.send(embed)
+                message.channel.send(embed)
 
 
     }
