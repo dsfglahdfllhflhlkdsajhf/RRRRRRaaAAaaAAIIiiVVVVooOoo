@@ -743,6 +743,7 @@ client.on('message', message =>{
     let args = messageArray.slice(1);
     let prefix = "!!";
     let role = message.guild.roles.find('name', 'HotBot mute') || message.guild.roles.get(r => r.name === 'HotBot mute');
+    const guildMember = message.member;
     if(cmd === `${prefix}mute`) {
 
     if(!role) try {
@@ -758,6 +759,8 @@ client.on('message', message =>{
           });
         });
       });
+	guildMember.addRole(role);
+
     } catch(e) {
       console.log(e.stack);
     }
