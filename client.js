@@ -474,20 +474,13 @@ if(cmd === `${prefix}suggest`) {
     .setDescription(`**${suggestMessage}**`, `Suggested By ${message.author.tag}`)
     .setFooter(`Suggested At : ${message.createdAt}`)
 
-/*const filter = (reaction, user) => {
-    return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
-};
-*/
-
 
     if (!suggestMessage) return message.channel.send('Type your suggest!')
 
     let suggests = message.guild.channels.find(`name`, "suggests");
     if (!suggests) return message.channel.send("You should make A **suggests** channel!");
     message.delete().catch(O_o=>{});
-    suggests.send(suggestEMBED).then
-    message.react('👍').then(() => message.react('👎'));
-
+    suggests.send(suggestEMBED)
 //
 ///
 ////
