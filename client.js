@@ -463,14 +463,17 @@ client.on('message', message =>{
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let prefix = '!!';
-
-
-if(cmd === `${prefix}suggest`) {
-    message.react('✅').then(() => message.react('❎'));
+message.react('👍').then(() => message.react('👎'));
 
 const filter = (reaction, user) => {
-    return ['✅', '❎'].includes(reaction.emoji.name) && user.id === message.author.id;
+    return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
 };
+
+message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+    .then(collected => {
+        const reaction = collected.first();
+
+if(cmd === `${prefix}suggest`) {
 
     let suggestMessage = message.content.substring(9)
     let suggestEMBED = new Discord.RichEmbed()
