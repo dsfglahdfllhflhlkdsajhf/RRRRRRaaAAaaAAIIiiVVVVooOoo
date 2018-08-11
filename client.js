@@ -482,6 +482,7 @@ if(cmd === `${prefix}suggest`) {
     suggests.send(suggestEMBED).then(function (suggestEMBED) {
         message.react("✅")
         message.react("❎")
+    });
 
 }
 });
