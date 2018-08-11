@@ -463,10 +463,11 @@ client.on('message', message =>{
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let prefix = '!!';
+    var suggestMessage = message.content.substring(9)
+    var suggestEMBED = new Discord.RichEmbed()
 
 if(cmd === `${prefix}suggest`) {
-    var suggestMessage = message.content.substring(9)
-    let suggestEMBED = new Discord.RichEmbed()
+    
     if (!suggestMessage) return message.channel.send('Type your suggest!')
     .setColor(3447003)
     .setTitle("New suggest just added!!")
