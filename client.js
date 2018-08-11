@@ -463,24 +463,24 @@ client.on('message', message =>{
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let prefix = '!!';
-message.react('👍').then(() => message.react('👎'));
+
+if(cmd === `${prefix}suggest`) {
+    let suggestEMBED = new Discord.RichEmbed()
+    let suggestMessage = message.content.substring(9)
+    
+    .setColor(3447003)
+    .setTitle("New suggest just added!!")
+    .setDescription(`**${suggestMessage}**`, `Suggested By ${message.author.tag}`)
+    .setFooter(`Suggested At : ${message.createdAt}`);
+suggestEMBED.react('👍').then(() => message.react('👎'));
 
 const filter = (reaction, user) => {
     return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
 };
 
-message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+suggestEMBED.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
     .then(collected => {
         const reaction = collected.first();
-
-if(cmd === `${prefix}suggest`) {
-
-    let suggestMessage = message.content.substring(9)
-    let suggestEMBED = new Discord.RichEmbed()
-    .setColor(3447003)
-    .setTitle("New suggest just added!!")
-    .setDescription(`**${suggestMessage}**`, `Suggested By ${message.author.tag}`)
-    .setFooter(`Suggested At : ${message.createdAt}`);
 
     if (!suggestMessage) return message.channel.send('Type your suggest!')
 
