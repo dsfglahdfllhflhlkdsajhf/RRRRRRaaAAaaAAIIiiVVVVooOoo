@@ -473,12 +473,12 @@ if(cmd === `${prefix}suggest`) {
     .setTitle("New suggest just added!!")
     .setDescription(`**${suggestMessage}**`, `Suggested By ${message.author.tag}`)
     .setFooter(`Suggested At : ${message.createdAt}`).then
-    message.react('👍').then(() => message.react('👎'));
+    suggestEMBED.react('👍').then(() => suggestEMBED.react('👎'));
 
-const filter = (reaction, user) => {
+/*const filter = (reaction, user) => {
     return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
 };
-
+*/
 message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
     .then(collected => {
         const reaction = collected.first();
