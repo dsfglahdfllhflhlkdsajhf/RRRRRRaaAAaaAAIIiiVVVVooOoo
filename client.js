@@ -478,9 +478,7 @@ if(cmd === `${prefix}suggest`) {
     return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
 };
 */
-message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
-    .then(collected => {
-        const reaction = collected.first();
+
 
     if (!suggestMessage) return message.channel.send('Type your suggest!')
 
