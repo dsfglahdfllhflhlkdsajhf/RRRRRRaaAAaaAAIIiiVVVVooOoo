@@ -487,9 +487,7 @@ if(cmd === `${prefix}suggest`) {
     message.delete().catch(O_o=>{});
     suggests.send(suggestEMBED).then
     message.react('👍').then(() => message.react('👎'));
-});
-}
-});
+
 //
 ///
 ////
@@ -1062,6 +1060,7 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`**${song.title}**, is now playing!`);
 }
 
-
+}
+});
 
 client.login(process.env.BOT_TOKEN);
