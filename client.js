@@ -737,37 +737,7 @@ client.on('message', message => {
 //////
 ///////
 ////////
-client.on('message', message =>{
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let prefix = "!!";
-    let role = message.guild.roles.find('name', 'HotBot mute') || message.guild.roles.get(r => r.name === 'HotBot mute');
-    let mentions = message.guild.members.first();
-    if(cmd === `${prefix}mute`) {
 
-    if(!role) try {
-      message.guild.createRole({
-        name: "HotBot mute",
-        permissions: 0
-      }).then(r => {
-        message.guild.channels.forEach(c => {
-          c.overwritePermissions(r , {
-            SEND_MESSAGES: false,
-            EMBED_LINKS: false,
-            ADD_REACTIONS: false
-          });
-        });
-      });
-	if(!mentions) {
-	message.mentions.roles.add(role)
-	}
-
-    } catch(e) {
-      console.log(e.stack);
-    }
-  }
-});
 //
 ///
 ////
@@ -776,11 +746,16 @@ client.on('message', message =>{
 ///////
 ////////
 client.on('message', message => {
-let prefix = "!!",
-    if (message.content.startsWith(prefix + "bot-info")) {
+
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+    let prefix = "!!";
+
+    if (cmd === `${prefix}bot-info`) {
 	let AboutEmbed = new Discord.RichEmbed
 	.setTitle('This is A some Information about me')
-	.setColor('#79ade4')
+	.setColor('#5074b3')
 	.addField('Usage Memory', `${(process.memoryUsage().rss / 1000000).toFixed()}MB`, true)
         .addField('Connection speed' , `${Date.now() - message.createdTimestamp}` + ' ms')
 	.addField('My ping', `${client.ping}` + 'ms')
