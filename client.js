@@ -472,8 +472,8 @@ if(cmd === `${prefix}suggest`) {
     .setColor(3447003)
     .setTitle("New suggest just added!!")
     .setDescription(`**${suggestMessage}**`, `Suggested By ${message.author.tag}`)
-    .setFooter(`Suggested At : ${message.createdAt}`);
-message.react('👍').then(() => message.react('👎'));
+    .setFooter(`Suggested At : ${message.createdAt}`).then
+    message.react('👍').then(() => message.react('👎'));
 
 const filter = (reaction, user) => {
     return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
