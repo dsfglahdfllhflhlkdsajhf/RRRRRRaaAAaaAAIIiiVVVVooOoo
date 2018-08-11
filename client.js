@@ -751,18 +751,20 @@ client.on('message', message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let prefix = "!!";
+    let sicon = client.user.displayAvatarURL;
 
     if (cmd === `${prefix}bot-info`) {
     let AboutEmbed = new Discord.RichEmbed()
-    .setTitle('This is A some Information about me')
+    .setTitle('**This is A some Information about me :**')
     .setColor('#5074b3')
+    .addField('prefix', prefix)
     .addField('Usage Memory', `${(process.memoryUsage().rss / 1000000).toFixed()}MB`, true)
     .addField('Connection speed' , `${Date.now() - message.createdTimestamp}` + ' ms')
     .addField('My ping', `${client.ping}` + 'ms')
     .addField('Uptime', (process.uptime()), true)
-    .addField('cpu Usage', `${(process.cpuUsage().rss / 10000).toFixed()}%`, true)
     .addField('Bot Users', client.users.size)
     .addField('Bot Guilds', client.guilds.size)
+    .setThumbnail(sicon)
     message.channel.send(AboutEmbed)
     }
 });
