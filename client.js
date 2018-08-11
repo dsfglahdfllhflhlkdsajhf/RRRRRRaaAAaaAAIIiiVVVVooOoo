@@ -207,6 +207,7 @@ client.on('message', message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(0);
     let prefix = '!!';
+    let bicon = message.guild.displayAvatarURL;
 
 if(cmd === `${prefix}emojis`) {
     if(message.channel.type === 'dm') return message.channel.send('Nope Nope!! there are no emoji list in DMs! (:')
@@ -218,6 +219,7 @@ if(cmd === `${prefix}emojis`) {
     .setTitle("**Server emojis :**")
     .setAuthor(message.guild.name, message.guild.iconURL)
     .setColor("#5074b3")
+    .setThumbnail(bicon)
     .setDescription(List)
 
     message.channel.send(EmojiList);
@@ -380,7 +382,7 @@ client.on('message', message =>{
     
         message.delete().catch(O_o=>{});
         reportschannel.send(reportEmbed);
-	message.channel.send('Your report just recived to the admins Ty for the report!').then(message =>{message.delete(10000)})
+	message.channel.send('Your report just recived to the admins & owner! Ty for the report!').then(message =>{message.delete(10000)})
 	message.guild.owner.send('User just reported!!', reportEmbed)
     };
 });
@@ -429,6 +431,7 @@ client.on('message', async message =>{
             .setTitle("**List of A general Commands..**\n")
 	    .setDescription("**The bot prefix is (!!) btw.**")
             .addField(" - help", "Displays this message, (Correct usage: !!help)")
+	    .addField(" - bot-info", "I will give you some Information About me!")
             .addField(" - ping", "Tests my ping, (Correct usage: !!ping)")
             .addField(" - avatar", "To show your avatar or A mentioned member avatar! (Correct usage: !!avatar @RAIVO#7115)")
 	    .addField(" - user-info", "To get A mentioned user info! (Correct usage: !!user-info @RAIVO#7115)")
@@ -536,6 +539,7 @@ client.on('message', message => {
 ////////
 client.on('message', message => {
   if(message.content.startsWith(prefix + 'move-all')) {
+  if(message.channel.type === 'dm') return message.channel.send('Nope Nope!! please use my cool Admin commands in servers man (:')
   if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send("You don't have enough permissions to use this command!");
   if (!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("You don't have enough permissions to use this command!");
   if (message.member.voiceChannel == null) return message.channel.send(`You should join A voice channel to use this command!`)
@@ -764,6 +768,7 @@ client.on('message', message => {
     .addField('Uptime', (process.uptime()), true)
     .addField('Bot Users', client.users.size)
     .addField('Bot Guilds', client.guilds.size)
+    .setFooter(message.author.displayAvatarURL, message.author.tag)
     .setThumbnail(sicon)
     message.channel.send(AboutEmbed)
     }
