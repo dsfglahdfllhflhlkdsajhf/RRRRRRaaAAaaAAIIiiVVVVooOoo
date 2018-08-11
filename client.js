@@ -381,9 +381,8 @@ client.on('message', message =>{
     
     
         message.delete().catch(O_o=>{});
-        reportschannel.send(reportEmbed);
 	message.channel.send('Your report just recived to the admins & owner! Ty for the report!').then(message =>{message.delete(10000)})
-	message.guild.owner.send('User just reported!!', reportEmbed)
+	reportschannel.send(reportEmbed);
     };
 });
 //
