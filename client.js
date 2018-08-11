@@ -480,7 +480,7 @@ if(cmd === `${prefix}suggest`) {
         suggestEMBED.react(":white_check_mark:")
         suggestEMBED.react(":negative_squared_cross_mark:")
     });
-
+}
 });
 //
 ///
