@@ -775,6 +775,21 @@ client.on('message', message =>{
 //////
 ///////
 ////////
+client.on('message', message => {
+let prefix = "!!",
+    if (message.content.startsWith(prefix + "bot-info")) {
+	let AboutEmbed = new Discord.RichEmbed
+	.setTitle('This is A some Information about me')
+	.setColor('#79ade4')
+	.addField('Usage Memory', `${(process.memoryUsage().rss / 1000000).toFixed()}MB`, true)
+        .addField('Connection speed' , `${Date.now() - message.createdTimestamp}` + ' ms')
+	.addField('My ping', `${client.ping}` + 'ms')
+        .addField('Uptime', (process.uptime()), true)
+        .addField('cpu Usage', `${(process.cpuUsage().rss / 10000).toFixed()}%`, true)
+	.addField('Bot Users', client.users.size)
+	.addField('Bot Guilds', client.guilds.size)
+    }
+});
 /*
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
