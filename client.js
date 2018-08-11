@@ -472,8 +472,7 @@ if(cmd === `${prefix}suggest`) {
     .setColor(3447003)
     .setTitle("New suggest just added!!")
     .setDescription(`**${suggestMessage}**`, `Suggested By ${message.author.tag}`)
-    .setFooter(`Suggested At : ${message.createdAt}`).then
-    suggestEMBED.react('👍').then(() => suggestEMBED.react('👎'));
+    .setFooter(`Suggested At : ${message.createdAt}`)
 
 /*const filter = (reaction, user) => {
     return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -488,7 +487,8 @@ message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
     let suggests = message.guild.channels.find(`name`, "suggests");
     if (!suggests) return message.channel.send("You should make A **suggests** channel!");
     message.delete().catch(O_o=>{});
-    suggests.send(suggestEMBED)
+    suggests.send(suggestEMBED).then
+    message.react('👍').then(() => message.react('👎'));
 });
 }
 });
