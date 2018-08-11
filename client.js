@@ -468,11 +468,12 @@ client.on('message', message =>{
 
 if(cmd === `${prefix}suggest`) {
     
-    if (!suggestMessage) return message.channel.send('Type your suggest!')
     .setColor(3447003)
     .setTitle("New suggest just added!!")
     .setDescription(`**${suggestMessage}**`, `Suggested By ${message.author.tag}`)
     .setFooter(`Suggested At : ${message.createdAt}`);
+
+    if (!suggestMessage) return message.channel.send('Type your suggest!')
 
     let suggests = message.guild.channels.find(`name`, "suggests");
     if (!suggests) return message.channel.send("You should make A **suggests** channel!");
