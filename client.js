@@ -467,6 +467,7 @@ client.on('message', message =>{
 if(cmd === `${prefix}suggest`) {
     var suggestMessage = message.content.substring(9)
     let suggestEMBED = new Discord.RichEmbed()
+    if (!suggestMessage) return message.channel.send('Type your suggest!')
     .setColor(3447003)
     .setTitle("New suggest just added!!")
     .setDescription(`**${suggestMessage}**`, `Suggested By ${message.author.tag}`)
@@ -476,6 +477,9 @@ if(cmd === `${prefix}suggest`) {
     if (!suggests) return message.channel.send("You should make A **suggests** channel!");
     message.delete().catch(O_o=>{});
     suggests.send(suggestEMBED);
+    .then(function (suggestEMBED) {
+          message.react(":white_check_mark:")
+          message.react(":negative_squared_cross_mark:")
 }
 
 });
@@ -740,7 +744,32 @@ client.on('message', message => {
 //////
 ///////
 ////////
+client.on('message', message => {
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(0);
+    let prefix = '!!';
+    let coins = require("./coins.json");
+	
+if(cmd === `${prefix}coins`) {
+  //!coins
+  if(!coins[message.author.id]){
+    coins[message.author.id] = {
+      coins: 0
+    };
+  }
 
+  let uCoins = coins[message.author.id].coins;
+
+
+  let coinEmbed = new Discord.RichEmbed()
+  .setAuthor(message.author.username)
+  .setColor("#00FF00")
+  .addField("💸", uCoins);
+
+  message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});
+}
+});
 //
 ///
 ////
