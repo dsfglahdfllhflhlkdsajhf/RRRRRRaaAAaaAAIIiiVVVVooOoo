@@ -488,6 +488,7 @@ suggestEMBED.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
     if (!suggests) return message.channel.send("You should make A **suggests** channel!");
     message.delete().catch(O_o=>{});
     suggests.send(suggestEMBED)
+});
 }
 });
 //
