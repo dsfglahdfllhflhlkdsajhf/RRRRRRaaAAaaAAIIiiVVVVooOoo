@@ -479,10 +479,10 @@ if(cmd === `${prefix}suggest`) {
     let suggests = message.guild.channels.find(`name`, "suggests");
     if (!suggests) return message.channel.send("You should make A **suggests** channel!");
     message.delete().catch(O_o=>{});
-    suggests.send(suggestEMBED).then(function (suggestEMBED) {
+    suggests.send(suggestEMBED).then {
         message.react("✅")
         message.react("❎")
-    });
+    };
 
 }
 });
