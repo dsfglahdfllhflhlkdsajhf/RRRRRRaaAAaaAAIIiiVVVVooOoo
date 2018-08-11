@@ -463,10 +463,15 @@ client.on('message', message =>{
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let prefix = '!!';
-    
-    
+
 
 if(cmd === `${prefix}suggest`) {
+    message.react('✅').then(() => message.react('❎'));
+
+const filter = (reaction, user) => {
+    return ['✅', '❎'].includes(reaction.emoji.name) && user.id === message.author.id;
+};
+
     let suggestMessage = message.content.substring(9)
     let suggestEMBED = new Discord.RichEmbed()
     .setColor(3447003)
@@ -479,10 +484,7 @@ if(cmd === `${prefix}suggest`) {
     let suggests = message.guild.channels.find(`name`, "suggests");
     if (!suggests) return message.channel.send("You should make A **suggests** channel!");
     message.delete().catch(O_o=>{});
-    suggests.send(suggestEMBED).then 
-        message.react("✅")
-        message.react("❎")
-
+    suggests.send(suggestEMBED)
 }
 });
 //
