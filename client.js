@@ -840,7 +840,7 @@ client.on('message', message => {
             message.channel.bulkDelete(fetched)
                 .catch(error => message.channel.send(`Error: ${error}`)); // If it finds an error, it posts it into the channel.
 
-	
+        };
     };
 });
 /*
