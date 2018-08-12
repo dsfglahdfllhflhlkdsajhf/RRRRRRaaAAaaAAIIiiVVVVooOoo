@@ -810,6 +810,7 @@ client.on('message', message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    let prefix = "!!";
     let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
 if (cmd === `${prefix}setPrefix`) {
   if(!message.member.hasPermission("MANAGE_SERVER")) return message.reply("No no no.");
