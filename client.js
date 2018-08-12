@@ -816,22 +816,19 @@ client.on('message', message => {
     let prefix = "!!";
 
     if (cmd === `${prefix}purge`) {
-        let messagecount = parseInt(args[1]) || 1;
-
-        var deletedMessages = -1;
-
-        message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)}).then(messages => {
-            messages.forEach(m => {
-                if (m.author.id == bot.user.id) {
-                    m.delete().catch(console.error);
-                    deletedMessages++;
-                }
-            });
-        }).then(() => {
-                if (deletedMessages === -1) deletedMessages = 0;
-                message.channel.send(`:white_check_mark: Purged \`${deletedMessages}\` messages.`)
-                    .then(m => m.delete(2000));
-        }).catch(console.error);
+const user = message.mentions.users.first();
+const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
+if (!amount) return message.reply('Must specify an amount to delete!');
+if (!amount && !user) return message.reply('Must specify a user and amount, or just an amount, of messages to purge!');
+message.channel.fetchMessages({
+ limit: amount,
+}).then((messages) => {
+ if (user) {
+ const filterBy = user ? user.id : Client.user.id;
+ messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
+ }
+ message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
+});
     };
 });
 /*
