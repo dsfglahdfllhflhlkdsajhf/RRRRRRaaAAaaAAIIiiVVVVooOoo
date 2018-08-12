@@ -809,6 +809,7 @@ client.on('message', message => {
 ///////
 ////////
 client.on('message', message => {
+    let prefix = "!!";
     const weather = require('weather-js'); // Make sure you call the packages you install.
     // Variables - Variables make it easy to call things, since it requires less typing.
     let msg = message.content.toUpperCase(); // This variable takes the message, and turns it all into uppercase so it isn't case sensitive. 
