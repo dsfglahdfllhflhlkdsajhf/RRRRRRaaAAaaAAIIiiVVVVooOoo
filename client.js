@@ -815,37 +815,32 @@ client.on('message', message => {
     let args = messageArray.slice(1);
     let prefix = "!!";
 
-    if (cmd === `${prefix}weather`) {
-        weather.find({search: args.join(" "), degreeType: 'F'}, function(err, result) { // Make sure you get that args.join part, since it adds everything after weather.
-            if (err) message.channel.send(err);
+    if (cmd === `${prefix}purge`) {
+       async function purge() {
+            message.delete(); // Lets delete the command message, so it doesnt interfere with the messages we are going to delete.
 
-            // We also want them to know if a place they enter is invalid.
-            if (result.length === 0) {
-                message.channel.send('**Please enter a valid location.**') // This tells them in chat that the place they entered is invalid.
-                return; // This exits the code so the rest doesn't run.
+            // Now, we want to check if the user has the `bot-commander` role, you can change this to whatever you want.
+            if (!message.member.roles.find("name", "bot-commander")) { // This checks to see if they DONT have it, the "!" inverts the true/false
+                message.channel.send('You need the \`bot-commander\` role to use this command.'); // This tells the user in chat that they need the role.
+                return; // this returns the code, so the rest doesn't run.
             }
 
-            // Variables
-            var current = result[0].current; // This is a variable for the current part of the JSON output
-            var location = result[0].location; // This is a variable for the location part of the JSON output
+            // We want to check if the argument is a number
+            if (isNaN(args[0])) {
+                // Sends a message to the channel.
+                message.channel.send('Please use a number as your arguments. \n Usage: ' + prefix + 'purge <amount>'); //\n means new line.
+                // Cancels out of the script, so the rest doesn't run.
+                return;
+            }
 
-            // Let's use an embed for this.
-            const embed = new Discord.RichEmbed()
-                .setDescription(`**${current.skytext}**`) // This is the text of what the sky looks like, remember you can find all of this on the weather-js npm page.
-                .setAuthor(`Weather for ${current.observationpoint}`) // This shows the current location of the weather.
-                .setThumbnail(current.imageUrl) // This sets the thumbnail of the embed
-                .setColor("#ffdb98") // This sets the color of the embed, you can set this to anything if you look put a hex color picker, just make sure you put 0x infront of the hex
-                .addField('Timezone',`UTC${location.timezone}`, true) // This is the first field, it shows the timezone, and the true means `inline`, you can read more about this on the official discord.js documentation
-                .addField('Degree Type',location.degreetype, true)// This is the field that shows the degree type, and is inline
-                .addField('Temperature',`${current.temperature} Degrees`, true)
-                .addField('Feels Like', `${current.feelslike} Degrees`, true)
-                .addField('Winds',current.winddisplay, true)
-                .addField('Humidity', `${current.humidity}%`, true)
+            const fetched = await message.channel.fetchMessages({limit: args[0]}); // This grabs the last number(args) of messages in the channel.
+            console.log(fetched.size + ' messages found, deleting...'); // Lets post into console how many messages we are deleting
 
-                // Now, let's display it when called
-                message.channel.send({embed});
-    });
+            // Deleting the messages
+            message.channel.bulkDelete(fetched)
+                .catch(error => message.channel.send(`Error: ${error}`)); // If it finds an error, it posts it into the channel.
 
+	
     };
 });
 /*
