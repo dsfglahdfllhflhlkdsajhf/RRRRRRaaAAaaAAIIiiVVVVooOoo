@@ -936,7 +936,7 @@ client.on('message', async msg => {
 			} catch (error) {
 				try {
 
-					var videos = await youtube.searchVideos(searchString, 8);
+					var videos = await youtube.searchVideos(searchString, 5);
 					let index = 0;
                     const embed1 = new Discord.RichEmbed()
                     .setTitle(":mag_right:  YouTube Search Results :")
