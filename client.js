@@ -809,47 +809,49 @@ client.on('message', message => {
 ///////
 ////////
 client.on('message', message => {
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
     let prefix = "!!";
-    const weather = require('weather-js'); // Make sure you call the packages you install.
-    // Variables - Variables make it easy to call things, since it requires less typing.
-    let msg = message.content.toUpperCase(); // This variable takes the message, and turns it all into uppercase so it isn't case sensitive. 
-    let cont = message.content.slice(prefix.length).split(" "); // This variable slices off the prefix, then puts the rest in an array based off the spaces
-    let args = cont.slice(1); // This slices off the command in cont, only leaving the arguments.
+if (cmd === `${prefix}setPrefix`) {
+  if(!message.member.hasPermission("MANAGE_SERVER")) return message.reply("No no no.");
+  if(!args[0] || args[0 == "help"]) return message.reply("Usage: !prefix <desired prefix here>");
 
-    if (msg.startsWith(prefix + 'WEATHER')) { // This checks to see if the beginning of the message is calling the weather command.
-        // You can find some of the code used here on the weather-js npm page in the description.
+  let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
 
-        weather.find({search: args.join(" "), degreeType: 'F'}, function(err, result) { // Make sure you get that args.join part, since it adds everything after weather.
-            if (err) message.channel.send(err);
+  prefixes[message.guild.id] = {
+    prefixes: args[0]
+  };
 
-            // We also want them to know if a place they enter is invalid.
-            if (result.length === 0) {
-                message.channel.send('**Please enter a valid location.**') // This tells them in chat that the place they entered is invalid.
-                return; // This exits the code so the rest doesn't run.
-            }
+  fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) => {
+    if (err) console.log(err)
+  });
 
-            // Variables
-            var current = result[0].current; // This is a variable for the current part of the JSON output
-            var location = result[0].location; // This is a variable for the location part of the JSON output
+  let sEmbed = new Discord.RichEmbed()
+  .setColor("#FF9900")
+  .setTitle("Prefix Set!")
+  .setDescription(`Set to ${args[0]}`);
 
-            // Let's use an embed for this.
-            const embed = new Discord.RichEmbed()
-                .setDescription(`**${current.skytext}**`) // This is the text of what the sky looks like, remember you can find all of this on the weather-js npm page.
-                .setAuthor(`Weather for ${current.observationpoint}`) // This shows the current location of the weather.
-                .setThumbnail(current.imageUrl) // This sets the thumbnail of the embed
-                .setColor(0x00AE86) // This sets the color of the embed, you can set this to anything if you look put a hex color picker, just make sure you put 0x infront of the hex
-                .addField('Timezone',`UTC${location.timezone}`, true) // This is the first field, it shows the timezone, and the true means `inline`, you can read more about this on the official discord.js documentation
-                .addField('Degree Type',location.degreetype, true)// This is the field that shows the degree type, and is inline
-                .addField('Temperature',`${current.temperature} Degrees`, true)
-                .addField('Feels Like', `${current.feelslike} Degrees`, true)
-                .addField('Winds',current.winddisplay, true)
-                .addField('Humidity', `${current.humidity}%`, true)
+  message.channel.send(sEmbed);  if(!message.member.hasPermission("MANAGE_SERVER")) return message.reply("No no no.");
+  if(!args[0] || args[0 == "help"]) return message.reply("Usage: !prefix <desired prefix here>");
 
-                // Now, let's display it when called
-                message.channel.send({embed});
-        });
-    }
+  let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
 
+  prefixes[message.guild.id] = {
+    prefixes: args[0]
+  };
+
+  fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) => {
+    if (err) console.log(err)
+  });
+
+  let sEmbed = new Discord.RichEmbed()
+  .setColor("#FF9900")
+  .setTitle("Prefix Set!")
+  .setDescription(`Set to ${args[0]}`);
+
+  message.channel.send(sEmbed);
+}
 });
 /*
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
