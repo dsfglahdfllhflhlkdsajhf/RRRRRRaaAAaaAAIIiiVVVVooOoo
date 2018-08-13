@@ -891,6 +891,33 @@ client.on('message', message =>{
       }
     }
 });
+
+client.on('message', message =>{
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+    let prefix = "!!";
+    
+    if(cmd === `${prefix}ban`) {
+        let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+        if (!bUser) return message.channel.send("Idk who 2 ban ??");
+        let bReason = args.join(" ").slice(22);
+        if (!bReason) return message.channel.send('Type the ban reason!')
+        let Banner = message.guild.roles.find(`name`, 'Mod')
+        if(!message.member.roles.has(Banner)) return message.channel.send("`You can't use this command Nibba!");
+
+        let banEmbed = new Discord.RichEmbed()
+            .setDescription("**~~User just banned :~~**")
+            .setColor("#00ff93")
+            .addField("- Banned User :", `${bUser} (${bUser.id})`)
+            .addField("- Banned By :", `<@${message.author.id}> (${message.author.id})`);
+
+        message.guild.member(bUser).ban(bReason);
+    message.channel.send(banEmbed);
+
+    return;
+    }
+});
 /*
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
