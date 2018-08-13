@@ -842,7 +842,7 @@ client.on('message', message =>{
     let prefix = '!!';
 
     if(cmd === `${prefix}hackban`) {
-	const bot = require new Discord.Client();
+	const bot = new Discord.Client();
       if (!message.member.permission.json.banMembers) {
         message.channel.createMessage(`<@${message.author.id}>, Sorry but you do not have permission to ban members.`)
       } else if (!message.channel.guild.members.get(bot.user.id).permission.json.banMembers) {
