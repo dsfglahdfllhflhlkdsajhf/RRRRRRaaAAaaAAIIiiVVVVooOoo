@@ -834,6 +834,63 @@ if (cmd === `${prefix}setPrefix`) {
 
 }
 });
+
+client.on('message', message =>{
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
+    let prefix = '!!';
+
+    if(cmd === `${prefix}hackban`) {
+	const bot = require new Discord.Client();
+      if (!message.member.permission.json.banMembers) {
+        message.channel.createMessage(`<@${message.author.id}>, Sorry but you do not have permission to ban members.`)
+      } else if (!message.channel.guild.members.get(bot.user.id).permission.json.banMembers) {
+        msg.channel.createMessage(`<@${message.author.id}>, Sorry but I do not have the required permission to ban members.`)
+      } else if (!args[0]) {
+        message.channel.send('You need to provide an ID to ban!')
+      } else if (message.mentions.filter(m => m.id !== bot.user.id).length > 0) {
+        message.channel.createMessage('You need to provide an ID to ban! Mentions aren\'t supported for hackban.')
+      } else {
+        message.channel.createMessage(`<@${message.author.id}>, Please wait...`).then((m) => {
+          let banMembers = {success: [], error: []}
+          let idArray = []
+          let reasonWords = []
+          args.split(' ').map((id) => {
+            if (isNaN(id) || id.length < 16) {
+              reasonWords.push(id)
+            } else {
+              idArray.push(id)
+            }
+          })
+          let reason = reasonWords.length > 0 ? reasonWords.join(' ') : 'No reason provided.'
+          idArray.map((id) => {
+            bot.getRESTUser(id).then((user) => {
+              message.channel.guild.banMember(id, 0, `${message.author.username}#${message.author.discriminator} used hackban for: ${reason}`).then(() => {
+                banMembers.success.push(`\`${user.username}#${user.discriminator}\``)
+                if (banMembers.success.length + banMembers.error.length === idArray.length) {
+                  let resp = ''
+                  if (banMembers.success.length !== 0) resp += `Hackbanned the following: ${banMembers.success.join(', ')}\n`
+                  if (banMembers.error.length !== 0) resp += `Could not hackban the following: ${banMembers.error.join(', ')}\n`
+                  resp += `Reason provided by user: ${reason}`
+                  m.edit(resp)
+                }
+              }).catch(() => {
+                banMembers.error.push(`\`${user.username}#${user.discriminator}\``)
+                if (banMembers.success.length + banMembers.error.length === idArray.length) {
+                  let resp = ''
+                  if (banMembers.success.length !== 0) resp += `Hackbanned the following: ${banMembers.success.join(', ')}\n`
+                  if (banMembers.error.length !== 0) resp += `Could not hackban the following: ${banMembers.error.join(', ')}\n`
+                  resp += `Reason provided by user: ${reason}`
+                  m.edit(resp)
+                }
+              })
+            })
+          })
+        })
+      }
+    }
+});
 /*
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
