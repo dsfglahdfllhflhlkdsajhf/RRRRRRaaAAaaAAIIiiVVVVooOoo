@@ -904,6 +904,7 @@ client.on('message', message =>{
         let bReason = args.join(" ").slice(22);
         if (!bReason) return message.channel.send('Type the ban reason!')
         let Banner = message.guild.roles.find(`name`, 'Mod')
+	if (!Banner) return message.channel.send(`creat A ${Banner} role!`)
         if(!message.member.roles.has(Banner)) return message.channel.send("`You can't use this command Nibba!");
 
         let banEmbed = new Discord.RichEmbed()
